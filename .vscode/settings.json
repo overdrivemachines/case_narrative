@@ -1,0 +1,9 @@
+{
+  "css.styleSheets": [
+    "node_modules/bootstrap/dist/css/bootstrap.css",
+    "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+    "app/assets/stylesheets/**/*.{css,scss}",
+    "app/assets/builds/**/*.css"
+  ],
+  "css.autoValidation": "Save"
+}
