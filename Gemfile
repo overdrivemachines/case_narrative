@@ -44,6 +44,9 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false # # Omakase Ruby styling
 
   gem "faker" # Generate fake data
+
+  gem "erb_lint", require: false # Lint ERB templates
+  gem "htmlbeautifier", require: false # Format HTML+ERB templates
 end
 
 group :development do

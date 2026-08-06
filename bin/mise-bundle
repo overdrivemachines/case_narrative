@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# Run Bundler with the Ruby version pinned in mise.toml.
+exec mise exec -- bundle "$@"

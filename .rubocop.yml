@@ -1,6 +1,10 @@
 # Omakase Ruby styling for Rails
 inherit_gem: { rubocop-rails-omakase: rubocop.yml }
 
+# Keep Ruby and Ruby LSP formatting aligned with the project's 200-column limit.
+Layout/LineLength:
+  Max: 200
+
 # Overwrite or add rules to create your own house style
 #
 # # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`

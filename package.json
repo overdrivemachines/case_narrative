@@ -1,12 +1,21 @@
 {
   "name": "app",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "bun bun.config.js",
-    "build:css:compile": "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules",
-    "build:css:prefix": "postcss ./app/assets/builds/application.css --use=autoprefixer --output=./app/assets/builds/application.css",
+    "build:css:compile": "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --source-map --load-path=node_modules",
+    "build:css:prefix": "postcss ./app/assets/builds/application.css --use=autoprefixer --output=./app/assets/builds/application.css --map",
     "build:css": "bun run build:css:compile && bun run build:css:prefix",
-    "watch:css": "nodemon --watch ./app/assets/stylesheets/ --ext scss --exec \"bun run build:css\""
+    "watch:css": "sass --watch ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --source-map --load-path=node_modules",
+    "format": "bun run format:frontend && bun run format:erb",
+    "format:frontend": "prettier --write \"**/*.{html,js,json,md,scss,yml,yaml}\" && stylelint \"app/assets/stylesheets/**/*.scss\" \"public/**/*.html\" --fix",
+    "format:erb": "find app/views -type f -name '*.html.erb' -exec bundle exec htmlbeautifier --keep-blank-lines 1 {} +",
+    "format:check": "prettier --check \"**/*.{js,json,md,yml,yaml}\" && stylelint \"app/assets/stylesheets/**/*.scss\" \"public/**/*.html\" && find app/views -type f -name '*.html.erb' -exec bundle exec htmlbeautifier --keep-blank-lines 1 --lint-only {} +",
+    "lint:js": "eslint app/javascript bun.config.js",
+    "lint:css": "stylelint \"app/assets/stylesheets/**/*.scss\" \"public/**/*.html\"",
+    "lint": "bun run lint:js && bun run lint:css",
+    "check": "bun run format:check && bun run lint"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
@@ -15,12 +24,23 @@
     "autoprefixer": "^10.5.4",
     "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1",
-    "nodemon": "^3.1.14",
     "postcss": "^8.5.25",
     "postcss-cli": "^11.0.1",
     "sass": "^1.102.0"
   },
   "browserslist": [
     "defaults"
-  ]
+  ],
+  "devDependencies": {
+    "@awmottaz/prettier-plugin-void-html": "^2.2.1",
+    "@eslint/js": "^10.0.1",
+    "@stylistic/stylelint-config": "^5.0.0",
+    "@stylistic/stylelint-plugin": "^5.2.1",
+    "eslint": "^10.8.0",
+    "globals": "^17.9.0",
+    "postcss-html": "^2.0.0",
+    "prettier": "^3.9.6",
+    "stylelint": "^17.14.1",
+    "stylelint-config-standard-scss": "^17.0.0"
+  }
 }
