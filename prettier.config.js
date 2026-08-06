@@ -1,9 +1,13 @@
+import * as voidHtmlPlugin from "@awmottaz/prettier-plugin-void-html";
+
 export default {
   // Keep CLI and editor formatting consistent for every Prettier-supported file.
   printWidth: 200,
   // Use modern HTML void-element syntax (`<meta>`, `<br>`, etc.) instead of
   // Prettier's XHTML-style self-closing syntax (`<meta />`, `<br />`, etc.).
-  plugins: ["@awmottaz/prettier-plugin-void-html"],
+  // Import the module instead of relying on runtime package-name discovery so
+  // the Prettier CLI and the VS Code extension receive the same plugin object.
+  plugins: [voidHtmlPlugin],
   overrides: [
     {
       files: "**/*.html",
