@@ -21,9 +21,11 @@ gem "solid_cable"
 gem "bootsnap", require: false # Reduces boot times through caching; required in config/boot.rb
 gem "kamal", require: false # Deploy this application anywhere as a Docker container
 gem "thruster", require: false # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma
+
+gem "ruby-vips", "~> 2.3" # libvips backend for Active Storage variants
 gem "image_processing", "~> 2.0" # Use Active Storage variants
 
-# gem "ruby-vips", "~> 2.3" # libvips backend for Active Storage variants
+
 # gem "devise" # Authentication (users, attorneys, defendants)
 # gem "devise_invitable" # Invite users (attorney invites defendant)
 # gem "pundit" # Authorization (roles, permissions, access control)
