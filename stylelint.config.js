@@ -1,5 +1,9 @@
 export default {
-  extends: ["stylelint-config-standard-scss"],
+  extends: [
+    "stylelint-config-standard-scss",
+    // Supply the complete formatting rules that Stylelint core intentionally omits.
+    "@stylistic/stylelint-config",
+  ],
   plugins: ["@stylistic/stylelint-plugin"],
   ignoreFiles: ["app/assets/builds/**"],
   overrides: [
