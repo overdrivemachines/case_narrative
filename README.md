@@ -1,5 +1,7 @@
 # README
 
+[![CI](https://github.com/overdrivemachines/case_narrative/actions/workflows/ci.yml/badge.svg)](https://github.com/overdrivemachines/case_narrative/actions/workflows/ci.yml)
+
 CaseNarrative is a timeline-based application that helps defendants and attorneys document, organize, and understand events in a legal case. It presents a chronological narrative with supporting exhibits, allowing users to clearly reconstruct what happened and build a structured, evidence-backed case.
 
 ![Preview](preview.png)
