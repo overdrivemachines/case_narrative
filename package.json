@@ -32,7 +32,9 @@
     "defaults"
   ],
   "devDependencies": {
+    "@awmottaz/prettier-plugin-void-html": "^2.2.1",
     "@eslint/js": "^10.0.1",
+    "@stylistic/stylelint-config": "^5.0.0",
     "@stylistic/stylelint-plugin": "^5.2.1",
     "eslint": "^10.8.0",
     "globals": "^17.9.0",
