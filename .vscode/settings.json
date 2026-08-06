@@ -1,9 +1,23 @@
 {
-  "css.styleSheets": [
-    "node_modules/bootstrap/dist/css/bootstrap.css",
-    "node_modules/bootstrap-icons/font/bootstrap-icons.css",
-    "app/assets/stylesheets/**/*.{css,scss}",
-    "app/assets/builds/**/*.css"
-  ],
-  "css.autoValidation": "Save"
+  // Project-specific stylesheets used for Bootstrap-aware CSS class suggestions.
+  "css.styleSheets": ["node_modules/bootstrap/dist/css/bootstrap.css", "node_modules/bootstrap-icons/font/bootstrap-icons.css", "app/assets/stylesheets/**/*.{css,scss}", "app/assets/builds/**/*.css"],
+  "css.autoValidation": "Save",
+
+  // Force the VS Code Prettier extension to use this project's configuration.
+  // Its HTML override leaves <style> content to Stylelint.
+  "prettier.configPath": "prettier.config.js",
+  // Use the same local Prettier version as `bun run format`; plugins are only
+  // supported by the extension when it loads a local or global Prettier module.
+  "prettier.prettierPath": "./node_modules/prettier",
+  "prettier.requireConfig": true,
+
+  // Keep Stylelint paths relative to the workspace so this project can be moved.
+  // The local .pnp.cjs boundary prevents the extension from loading an unrelated
+  // Yarn Plug'n'Play configuration from a parent directory.
+  "stylelint.stylelintPath": "./node_modules/stylelint",
+  "stylelint.configFile": "stylelint.config.js",
+  "stylelint.configBasedir": ".",
+
+  // This wrapper is local to the project and selects Ruby from mise.toml.
+  "vscode-erb-beautify.bundlerPath": "bin/mise-bundle"
 }
