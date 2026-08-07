@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+# The VS Code formatter asks erbfmt to print a formatted temporary file. Apply
+# safe assists to that temporary copy first, then return its formatted contents.
+# Explicit CLI modes used by the extension (lint/check) pass through unchanged.
+for argument in "$@"; do
+  case "$argument" in
+    --assist | --check | --help | --lint | --version | --write | init)
+      exec mise exec -- bundle exec erbfmt "$@"
+      ;;
+  esac
+done
+
+mise exec -- bundle exec erbfmt --assist --write "$@" >/dev/null || exit $?
+exec mise exec -- bundle exec erbfmt "$@"

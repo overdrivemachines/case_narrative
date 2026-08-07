@@ -1,0 +1,43 @@
+{
+  "files": {
+    "includes": ["**/*.html.erb"]
+  },
+  "parser": {
+    "allowHtmlOptionalClosingTags": false,
+    "allowUnbalancedHtmlFragments": false
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "indentHtml": true,
+    "lineWidth": 200,
+    "trailingNewline": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "emptyErbBranch": "error",
+      "emptyErbCodeTag": "error",
+      "emptyErbControlBlock": "error",
+      "noDeprecatedHtmlTag": "error",
+      "noDuplicateHtmlAttribute": "error",
+      "noInvalidHtmlBooleanAttribute": "error",
+      "noInvalidHtmlNesting": "error",
+      "noNonDoubleQuotedHtmlAttributeValue": "error",
+      "noSelfClosingHtmlTag": "error",
+      "unsupportedErbBlockStarter": "error"
+    }
+  },
+  "assist": {
+    "enabled": true,
+    "includes": ["**/*.html.erb"],
+    "actions": {
+      "html.useDoubleQuotedAttributes": true,
+      "html.fixSelfClosingTags": true,
+      "html.simplifyBooleanAttributes": true,
+      "erb.removeEmptyTags": true
+    }
+  }
+}
