@@ -47,10 +47,10 @@ group :development, :test do
   gem "faker" # Generate fake data
 
   gem "erb_lint", require: false # Lint ERB templates
-  gem "htmlbeautifier", require: false # Format HTML+ERB templates
 end
 
 group :development do
+  gem "erbfmt", "0.3.0", require: false # Format HTML+ERB templates
   gem "web-console" # Use console on exceptions pages
   gem "chrome_devtools_rails" # Expose Chrome DevTools workspace mapping metadata in development.
   gem "letter_opener" # Preview email in the browser instead of sending it
