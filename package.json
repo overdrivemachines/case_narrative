@@ -10,11 +10,12 @@
     "watch:css": "sass --watch ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --source-map --load-path=node_modules",
     "format": "bun run format:frontend && bun run format:erb",
     "format:frontend": "prettier --write \"**/*.{html,js,json,md,scss,yml,yaml}\" && stylelint \"app/assets/stylesheets/**/*.scss\" \"public/**/*.html\" --fix",
-    "format:erb": "find app/views -type f -name '*.html.erb' -exec bundle exec htmlbeautifier --keep-blank-lines 1 {} +",
-    "format:check": "prettier --check \"**/*.{js,json,md,yml,yaml}\" && stylelint \"app/assets/stylesheets/**/*.scss\" \"public/**/*.html\" && find app/views -type f -name '*.html.erb' -exec bundle exec htmlbeautifier --keep-blank-lines 1 --lint-only {} +",
+    "format:erb": "bundle exec erbfmt --assist --write app/views && bundle exec erbfmt --write app/views",
+    "format:check": "prettier --check \"**/*.{js,json,md,yml,yaml}\" && stylelint \"app/assets/stylesheets/**/*.scss\" \"public/**/*.html\" && bundle exec erbfmt --check app/views",
     "lint:js": "eslint app/javascript bun.config.js",
     "lint:css": "stylelint \"app/assets/stylesheets/**/*.scss\" \"public/**/*.html\"",
-    "lint": "bun run lint:js && bun run lint:css",
+    "lint:erb": "bundle exec erbfmt --lint app/views && bundle exec erb_lint --lint-all",
+    "lint": "bun run lint:js && bun run lint:css && bun run lint:erb",
     "check": "bun run format:check && bun run lint"
   },
   "dependencies": {

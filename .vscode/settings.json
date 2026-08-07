@@ -18,6 +18,10 @@
   "stylelint.configFile": "stylelint.config.js",
   "stylelint.configBasedir": ".",
 
-  // This wrapper is local to the project and selects Ruby from mise.toml.
-  "vscode-erb-beautify.bundlerPath": "bin/mise-bundle"
+  // Apply assists before formatting the extension's temporary document. The
+  // wrapper also selects the bundled erbfmt with the Ruby pinned in mise.toml.
+  "erbfmt.command": "bin/erbfmt-vscode",
+  "erbfmt.arguments": [],
+  // Publish erbfmt diagnostics in the Problems panel on file open and save.
+  "erbfmt.lint.enabled": true
 }

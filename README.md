@@ -58,6 +58,7 @@ bin/mise-bundle install
 bin/mise-bundle exec rails test
 bin/mise-bundle exec rubocop
 bin/mise-bundle exec erb_lint --lint-all
+bin/mise-bundle exec erbfmt --check app/views
 
 # Update one gem and its permitted dependencies
 bin/mise-bundle update GEM_NAME
@@ -72,7 +73,7 @@ For example, `bin/mise-bundle exec rubocop` is equivalent to:
 mise exec -- bundle exec rubocop
 ```
 
-VS Code's ERB beautifier is configured to use this wrapper automatically, so editor formatting also runs against the project's mise-managed Ruby and bundle.
+VS Code's erbfmt extension is configured to run through mise and Bundler, so editor formatting uses the project's pinned Ruby and formatter version.
 
 ## Update package.json
 
@@ -84,26 +85,26 @@ bun update --latest
 
 The application uses the following development tools:
 
-| Files                                            | Formatter      | Linter            | Responsibility                                                                                                                                                      |
-| ------------------------------------------------ | -------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| HTML, JavaScript, JSON, YAML, Markdown, and SCSS | Prettier       | —                 | Applies consistent whitespace, indentation, wrapping, and general layout.                                                                                           |
-| JavaScript                                       | Prettier       | ESLint            | Prettier controls layout; ESLint finds JavaScript mistakes and unsafe or suspicious patterns.                                                                       |
-| SCSS and CSS embedded in HTML                    | Prettier       | Stylelint         | Prettier controls general layout; Stylelint checks CSS correctness and applies the project's comma-list conventions.                                                |
-| HTML+ERB                                         | htmlbeautifier | Herb and erb_lint | htmlbeautifier controls layout; Herb provides live editor diagnostics; erb_lint enforces ERB, HTML, accessibility, and embedded Ruby conventions in the CLI and CI. |
-| Ruby                                             | RuboCop        | RuboCop           | RuboCop provides both Ruby formatting corrections and static analysis using Rails Omakase rules.                                                                    |
+| Files                                            | Formatter | Linter            | Responsibility                                                                                                                                                           |
+| ------------------------------------------------ | --------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| HTML, JavaScript, JSON, YAML, Markdown, and SCSS | Prettier  | —                 | Applies consistent whitespace, indentation, wrapping, and general layout.                                                                                                |
+| JavaScript                                       | Prettier  | ESLint            | Prettier controls layout; ESLint finds JavaScript mistakes and unsafe or suspicious patterns.                                                                            |
+| SCSS and CSS embedded in HTML                    | Prettier  | Stylelint         | Prettier controls general layout; Stylelint checks CSS correctness and applies the project's comma-list conventions.                                                     |
+| HTML+ERB                                         | erbfmt    | Herb and erb_lint | erbfmt controls HTML and ERB layout; Herb provides live editor diagnostics; erb_lint enforces ERB, HTML, accessibility, and embedded Ruby conventions in the CLI and CI. |
+| Ruby                                             | RuboCop   | RuboCop           | RuboCop provides both Ruby formatting corrections and static analysis using Rails Omakase rules.                                                                         |
 
 Formatters and linters solve different problems. A formatter rewrites presentation—spacing, indentation, wrapping, and line breaks—without deciding whether the code is logically sound. A linter analyzes the code for errors, questionable constructs, framework conventions, and project-specific rules. Using both is intentional: formatting makes the code consistent, while linting helps make it correct and maintainable.
 
 For SCSS and embedded CSS, Stylelint performs a small formatting pass after Prettier. This preserves comma-separated selectors and values on one line, which is an explicit project convention that Prettier cannot configure by itself. VS Code uses the same order on save: Prettier formats first, then the Stylelint save action runs.
 
-Plain HTML also uses `@awmottaz/prettier-plugin-void-html`, which makes Prettier emit modern void elements such as `<meta>` and `<br>` without XHTML-style trailing slashes. The plugin applies only to `.html` files; ERB remains formatted by htmlbeautifier.
+Plain HTML also uses `@awmottaz/prettier-plugin-void-html`, which makes Prettier emit modern void elements such as `<meta>` and `<br>` without XHTML-style trailing slashes. The plugin applies only to `.html` files; ERB remains formatted by erbfmt.
 
 ### ERB toolchain
 
 ERB uses three complementary tools:
 
-- **htmlbeautifier** is the formatter. It controls indentation and HTML layout around ERB tags and preserves one intentional blank line.
-- **Herb** is enabled as a VS Code linter. It provides immediate HTML-aware ERB diagnostics while editing, including malformed, mismatched, or unclosed tags. Herb's experimental formatter is intentionally disabled so it does not compete with htmlbeautifier.
+- **erbfmt** is the formatter. It controls HTML structure and ERB control-flow layout together and runs consistently in VS Code and CI.
+- **Herb** is enabled as a VS Code linter. It provides immediate HTML-aware ERB diagnostics while editing, including malformed, mismatched, or unclosed tags. Herb's experimental formatter is intentionally disabled so it does not compete with erbfmt.
 - **erb_lint** is the repository and CI linter. It provides repeatable Rails-oriented checks from the command line, including ERB, HTML, accessibility, and embedded Ruby conventions.
 
 In short, Herb gives fast feedback in the editor, while erb_lint provides the authoritative check that also runs outside VS Code.
