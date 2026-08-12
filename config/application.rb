@@ -23,5 +23,10 @@ module CaseNarrative
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.generators do |g|
+      # Configure generators to use UUIDs for primary keys in Active Record models
+      g.orm :active_record, primary_key_type: :uuid
+    end
   end
 end
