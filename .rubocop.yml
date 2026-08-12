@@ -10,3 +10,13 @@ Layout/LineLength:
 # # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
 # Layout/SpaceInsideArrayLiteralBrackets:
 #   Enabled: false
+
+# Checks the indentation of the first key in a hash literal where the opening brace and the first key are on separate lines.
+Layout/FirstHashElementIndentation:
+  Enabled: true
+  EnforcedStyle: consistent
+
+# Checks that the keys, separators, and values of a multi-line hash literal are aligned
+Layout/HashAlignment:
+  Enabled: true
+  EnforcedColonStyle: key
