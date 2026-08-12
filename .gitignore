@@ -38,3 +38,8 @@
 !/app/assets/builds/.keep
 
 /node_modules
+
+# Keep purchased/downloaded theme source packages local. Only the directory
+# placeholders are versioned; copy selected, adapted assets into app/.
+/vendor/themes/*/*
+!/vendor/themes/*/.gitkeep
