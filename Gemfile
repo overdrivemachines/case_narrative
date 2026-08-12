@@ -25,9 +25,9 @@ gem "thruster", require: false # Add HTTP asset caching/compression and X-Sendfi
 gem "ruby-vips", "~> 2.3" # libvips backend for Active Storage variants
 gem "image_processing", "~> 2.0" # Use Active Storage variants
 
-gem "devise" # Authentication (users, attorneys, defendants)
+gem "devise" # Authentication
+gem "omniauth", ">= 1.0"
 
-# gem "devise" # Authentication (users, attorneys, defendants)
 # gem "devise_invitable" # Invite users (attorney invites defendant)
 # gem "pundit" # Authorization (roles, permissions, access control)
 # gem "pg_search" # Full-text search using PostgreSQL
