@@ -8,8 +8,8 @@ export default {
   ignoreFiles: ["app/assets/builds/**"],
   overrides: [
     {
-      // Parse CSS inside <style> blocks in the static public error pages.
-      files: ["public/**/*.html"],
+      // Parse CSS inside <style> blocks without treating HTML markup as CSS.
+      files: ["**/*.html"],
       customSyntax: "postcss-html",
     },
   ],
