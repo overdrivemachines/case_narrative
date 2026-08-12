@@ -18,6 +18,23 @@
   "stylelint.configFile": "stylelint.config.js",
   "stylelint.configBasedir": ".",
 
+  // Herb 0.10.3 can time out while computing save-time fixes for large HTML
+  // documents. Prettier and Stylelint already own HTML formatting and fixes.
+  "languageServerHerb.linter.enabled": false,
+  "languageServerHerb.linter.fixOnSave": false,
+  "languageServerHerb.trace.server": "off",
+
+  // Herb registers as an HTML code-action provider and incorrectly handles
+  // Stylelint-only save requests. Keep Prettier formatting and Stylelint
+  // diagnostics, but do not request HTML code actions while saving here.
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": "never"
+    }
+  },
+
   // Apply assists before formatting the extension's temporary document. The
   // wrapper also selects the bundled erbfmt with the Ruby pinned in mise.toml.
   "erbfmt.command": "bin/erbfmt-vscode",
