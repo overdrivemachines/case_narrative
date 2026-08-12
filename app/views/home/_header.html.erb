@@ -1,0 +1,43 @@
+<header class="home-header">
+  <div class="home-shell">
+    <div class="home-topbar">
+      <span>A clearer way to build your case</span>
+      <span class="d-none d-md-inline">Securely organize events, evidence, and documents</span>
+    </div>
+
+    <nav class="home-nav navbar navbar-expand-lg" aria-label="Home page navigation">
+      <div class="container-fluid px-0">
+        <%= link_to root_path, class: "home-brand" do %>
+          <%= image_tag "home/mark.svg", width: 30, height: 30, alt: "" %>
+          <span>Case Narrative</span>
+        <% end %>
+
+        <button
+          class="navbar-toggler home-menu-button"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#home-navigation"
+          aria-controls="home-navigation"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span></span><span></span>
+        </button>
+
+        <div id="home-navigation" class="collapse navbar-collapse">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#timeline">Timeline</a></li>
+            <li class="nav-item"><a class="nav-link" href="#documents">Legal drafting</a></li>
+            <li class="nav-item"><a class="nav-link" href="#process">How it works</a></li>
+          </ul>
+
+          <div class="home-nav-actions">
+            <span class="home-login-placeholder">Log in</span>
+            <a class="home-button home-button-dark" href="#">Start your case <i class="home-arrow-up-right-icon" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>

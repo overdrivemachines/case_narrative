@@ -39,6 +39,8 @@ gem "image_processing", "~> 2.0" # Use Active Storage variants
 # gem "page_title_helper", "~> 10.0" # Internationalized page titles and headings
 
 group :development, :test do
+  # Load local settings such as Docker Compose database credentials from .env.
+  gem "dotenv-rails" # Load environment variables from .env
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "bundler-audit", require: false # Audits gems for known security defects (use config/bundler-audit.yml to ignore issues)
   gem "brakeman", require: false # Static analysis for security vulnerabilities

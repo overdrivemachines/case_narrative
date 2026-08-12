@@ -6,3 +6,6 @@ import { application } from "./application";
 
 import HelloController from "./hello_controller";
 application.register("hello", HelloController);
+
+import HomePageController from "./home_page_controller";
+application.register("home-page", HomePageController);
