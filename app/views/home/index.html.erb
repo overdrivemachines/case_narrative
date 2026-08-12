@@ -1,0 +1,311 @@
+<% content_for :title, "Case Narrative | Build a clear, evidence-backed case" %>
+<% content_for :head do %>
+  <meta name="description" content="Organize case events, evidence, and documents into a clear, chronological narrative.">
+<% end %>
+
+<section id="home" class="home-hero home-shell" aria-labelledby="home-heading">
+  <div class="home-hero-panel" style="--hero-image: url('<%= asset_path("home/hero-bg.webp") %>')">
+    <div class="row align-items-start gy-5 position-relative">
+      <div class="col-12">
+        <p class="home-eyebrow">[ CASE ORGANIZATION, REIMAGINED ]</p>
+      </div>
+
+      <div class="col-xl-5 col-lg-6">
+        <h1 id="home-heading">Turn case files into a clear story—and a plan for what comes next.</h1>
+        <p class="home-hero-summary">Organize events and evidence, build the narrative of what happened, and use AI to understand legal documents and prepare your next move.</p>
+        <div class="home-button-row">
+          <a class="home-button home-button-light" href="#">Start building your case <i class="home-arrow-up-right-icon" aria-hidden="true"></i></a>
+          <a class="home-text-link" href="#process">See how it works <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+
+      <div class="col-xl-5 col-lg-6 ms-xl-auto">
+        <div class="home-hero-images" aria-hidden="true">
+          <%= image_tag "home/hero-card-main.webp", class: "home-hero-image home-hero-image-main", alt: "" %>
+          <%= image_tag "home/hero-card-evidence.webp", class: "home-hero-image home-hero-image-evidence", alt: "" %>
+          <%= image_tag "home/hero-card-timeline.webp", class: "home-hero-image home-hero-image-timeline", alt: "" %>
+        </div>
+        <ul class="home-tag-list" aria-label="Platform capabilities">
+          <li>Case timeline <i class="home-tag-list-arrow-icon" aria-hidden="true"></i></li>
+          <li>Multimedia evidence <i class="home-tag-list-arrow-icon" aria-hidden="true"></i></li>
+          <li>Legal drafting <i class="home-tag-list-arrow-icon" aria-hidden="true"></i></li>
+          <li>AI case assistance <i class="home-tag-list-arrow-icon" aria-hidden="true"></i></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="home-hero-lockup">Case Narrative<sup>®</sup></div>
+    <div class="home-hero-capabilities">
+      <span>Organize the case <i class="home-arrow-up-right-icon" aria-hidden="true"></i></span>
+      <span>Connect the evidence <i class="home-arrow-up-right-icon" aria-hidden="true"></i></span>
+      <span>Tell what happened <i class="home-arrow-up-right-icon" aria-hidden="true"></i></span>
+      <span>Plan the next move <i class="home-arrow-up-right-icon" aria-hidden="true"></i></span>
+    </div>
+  </div>
+</section>
+
+<section id="timeline" class="home-timeline" aria-labelledby="timeline-heading">
+  <div class="container">
+    <div class="row align-items-end gy-4 home-timeline-heading">
+      <div class="col-lg-7">
+        <p class="home-section-label home-section-label-light">The case timeline <i class="home-arrow-up-right-icon" aria-hidden="true"></i></p>
+        <h2 id="timeline-heading">See the whole case unfold—event by event.</h2>
+      </div>
+      <div class="col-lg-4 ms-auto">
+        <p class="home-timeline-intro">Build a chronological record that connects every event to the people, issues, communications, and exhibits behind it.</p>
+      </div>
+    </div>
+
+    <figure class="home-timeline-demo">
+      <figcaption class="visually-hidden">A sample case timeline connecting events with documents, messages, images, and audio evidence.</figcaption>
+      <div class="home-timeline-window">
+        <div class="home-timeline-toolbar">
+          <div class="home-timeline-window-controls" aria-hidden="true"><span></span><span></span><span></span></div>
+          <span class="home-timeline-case-name">Morgan v. Northstar · Case timeline</span>
+          <span class="home-timeline-view">Chronological view</span>
+        </div>
+
+        <div class="home-timeline-scene">
+          <div class="home-timeline-grid" aria-hidden="true"></div>
+          <div class="home-timeline-rail" aria-hidden="true"></div>
+
+          <article class="home-timeline-event home-timeline-event-1">
+            <div class="home-event-date"><span>MAR</span><strong>08</strong><small>2025</small></div>
+            <div class="home-event-copy">
+              <span class="home-event-type home-event-type-communication">Communication</span>
+              <h3>Written notice sent</h3>
+              <p>Formal notice delivered and receipt confirmed.</p>
+              <div class="home-evidence-row"><span class="home-file-icon">PDF</span><span>Notice_and_receipt.pdf</span></div>
+            </div>
+          </article>
+
+          <article class="home-timeline-event home-timeline-event-2">
+            <div class="home-event-date"><span>APR</span><strong>21</strong><small>2025</small></div>
+            <div class="home-event-copy">
+              <span class="home-event-type home-event-type-incident">Key event</span>
+              <h3>Agreement breached</h3>
+              <p>Missed obligation documented with supporting records.</p>
+              <div class="home-evidence-stack" aria-label="Three connected exhibits">
+                <span class="home-evidence-thumb home-evidence-thumb-image">IMG</span>
+                <span class="home-evidence-thumb home-evidence-thumb-audio">AUD</span>
+                <span class="home-evidence-count">+3 exhibits</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="home-timeline-event home-timeline-event-3">
+            <div class="home-event-date"><span>JUN</span><strong>03</strong><small>2025</small></div>
+            <div class="home-event-copy">
+              <span class="home-event-type home-event-type-filing">Court filing</span>
+              <h3>Motion filed</h3>
+              <p>Draft reviewed, finalized, and added to the record.</p>
+              <div class="home-evidence-row"><span class="home-file-icon">DOCX</span><span>Motion_to_compel.docx</span></div>
+            </div>
+          </article>
+
+          <div class="home-timeline-now"><span></span>Today</div>
+        </div>
+      </div>
+    </figure>
+
+    <div class="row g-3 home-audience-grid">
+      <div class="col-lg-6">
+        <article class="home-audience-card home-audience-card-professional">
+          <span class="home-audience-number">01</span>
+          <div>
+            <p class="home-audience-label">For legal professionals</p>
+            <h3>Get from client files to case theory faster.</h3>
+            <p>Review a matter chronologically, collaborate around the record, trace assertions back to exhibits, and prepare drafts with the source material close at hand.</p>
+          </div>
+        </article>
+      </div>
+      <div class="col-lg-6">
+        <article class="home-audience-card home-audience-card-litigant">
+          <span class="home-audience-number">02</span>
+          <div>
+            <p class="home-audience-label">For self-represented litigants</p>
+            <h3>Make a complicated process easier to understand.</h3>
+            <p>Turn unfamiliar documents and scattered evidence into a plain-language timeline, a coherent account, and a clearer picture of the work ahead.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="home-features" aria-labelledby="features-heading">
+  <div class="container">
+    <div class="row gy-4 align-items-start home-section-heading">
+      <div class="col-lg-2 col-md-3">
+        <p class="home-section-label">What it helps you do <i class="home-arrow-up-right-icon" aria-hidden="true"></i></p>
+        <%= image_tag "home/gemstone.webp", class: "home-gemstone d-none d-md-block", alt: "", loading: "lazy" %>
+      </div>
+      <div class="col-lg-6 col-md-9">
+        <h2 id="features-heading">Build one connected record from every fact, file, and turning point.</h2>
+      </div>
+      <div class="col-lg-3 ms-auto">
+        <p class="home-section-intro">Case Narrative gives your materials structure, then helps you turn that structure into a persuasive account and practical next steps.</p>
+      </div>
+    </div>
+
+    <div class="row g-3 home-feature-grid">
+      <div class="col-lg-3 col-md-6">
+        <article class="home-feature-card home-feature-card-photo" style="--feature-image: url('<%= asset_path("home/feature-organize.webp") %>')">
+          <div class="home-feature-content">
+            <span class="home-feature-icon">◇</span>
+            <h3>Give every detail a place</h3>
+            <p>Organize the people, issues, events, and evidence in your case—and keep each item connected to the facts it supports.</p>
+          </div>
+        </article>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <article class="home-feature-card home-feature-card-image-bottom">
+          <div class="home-feature-content">
+            <span class="home-feature-icon">◫</span>
+            <h3>Reconstruct what happened</h3>
+            <p>Create a chronological timeline, then develop it into a readable narrative grounded in dates, context, and supporting evidence.</p>
+          </div>
+          <%= image_tag "home/feature-narrative.webp", alt: "Abstract folded document", loading: "lazy" %>
+        </article>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <article class="home-feature-card home-feature-card-split">
+          <%= image_tag "home/feature-documents-top.webp", alt: "Abstract digital surface", loading: "lazy" %>
+          <div class="home-feature-content">
+            <span class="home-feature-icon">⌘</span>
+            <h3>Bring every format together</h3>
+            <p>Upload PDFs from opposing counsel alongside images, audio, video, and other exhibits without losing their connection to the case.</p>
+          </div>
+          <%= image_tag "home/feature-documents-bottom.webp", alt: "Abstract digital form", loading: "lazy" %>
+        </article>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <article class="home-feature-card home-feature-card-ai">
+          <div class="home-feature-content">
+            <span class="home-feature-icon">✦</span>
+            <h3>Work through the next move</h3>
+            <p>Use AI to summarize legal documents, strengthen your writing, explore strategy, and prepare lawsuit documents in DOCX or PDF.</p>
+          </div>
+          <%= image_tag "home/feature-ai.webp", alt: "Abstract illuminated form", loading: "lazy" %>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="documents" class="home-drafting home-shell" aria-labelledby="documents-heading">
+  <div class="home-drafting-panel">
+    <div class="container">
+      <div class="row align-items-end gy-4">
+        <div class="col-lg-7">
+          <p class="home-section-label home-section-label-light">AI-assisted legal drafting <i class="home-arrow-up-right-icon" aria-hidden="true"></i></p>
+          <h2 id="documents-heading">Turn your case record into a working legal draft.</h2>
+        </div>
+        <div class="col-lg-4 ms-auto">
+          <p class="home-drafting-intro">Choose the relevant events and evidence, then use AI assistance to develop motions and other legal documents without starting from a blank page.</p>
+        </div>
+      </div>
+
+      <div class="home-drafting-workspace">
+        <aside class="home-drafting-sources" aria-label="Document sources">
+          <div class="home-workspace-heading">
+            <span>Case sources</span>
+            <span class="home-workspace-count">12 selected</span>
+          </div>
+          <div class="home-source-card home-source-card-active">
+            <span class="home-source-check">✓</span>
+            <div><strong>Apr 21 · Agreement breached</strong><small>Timeline event · 3 exhibits</small></div>
+          </div>
+          <div class="home-source-card">
+            <span class="home-source-icon">PDF</span>
+            <div><strong>Opposing counsel response</strong><small>32 pages · summarized</small></div>
+          </div>
+          <div class="home-source-card">
+            <span class="home-source-icon">PDF</span>
+            <div><strong>Executed agreement</strong><small>Exhibit A · 14 pages</small></div>
+          </div>
+          <div class="home-ai-note">
+            <span class="home-ai-spark">✦</span>
+            <p><strong>Case assistant</strong> found 6 timeline events and 4 exhibits relevant to the requested relief.</p>
+          </div>
+        </aside>
+
+        <div class="home-document-editor">
+          <div class="home-document-editor-bar">
+            <div><span class="home-document-status"></span>Draft saved</div>
+            <div class="home-document-actions"><span>DOCX</span><span>PDF</span></div>
+          </div>
+          <div class="home-document-page">
+            <p class="home-document-court">IN THE DISTRICT COURT</p>
+            <div class="home-document-case-row">
+              <div>MORGAN,<br><span>Plaintiff,</span></div>
+              <div>Case No. 25-CV-1048</div>
+            </div>
+            <h3>Motion to Compel Production of Documents</h3>
+            <p>Plaintiff respectfully moves the Court for an order compelling production of the requested records. In support of this motion, Plaintiff states as follows:</p>
+            <ol>
+              <li>Written notice was delivered on March 8, 2025, and receipt was confirmed.<sup>1</sup></li>
+              <li>The required production was not completed by the agreed deadline.<sup>2</sup></li>
+            </ol>
+            <div class="home-document-citation"><span>1</span> Linked to timeline event and Exhibit B</div>
+            <div class="home-ai-insert"><span>✦</span><strong>Suggested next section:</strong> Describe prior good-faith efforts to resolve the dispute.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4 home-drafting-benefits">
+        <div class="col-md-4"><span>01</span><h3>Start with your record</h3><p>Pull verified facts, dates, and exhibits directly from the case you organized.</p></div>
+        <div class="col-md-4"><span>02</span><h3>Stay in control</h3><p>Review, revise, and confirm every statement before it becomes part of your document.</p></div>
+        <div class="col-md-4"><span>03</span><h3>Export your work</h3><p>Continue editing in DOCX or create a polished PDF when the draft is ready.</p></div>
+      </div>
+      <p class="home-ai-disclaimer">Case Narrative provides organizational and drafting assistance. It does not replace independent legal judgment or advice from a qualified attorney.</p>
+    </div>
+  </div>
+</section>
+
+<section id="process" class="home-process home-shell" aria-labelledby="process-heading">
+  <div class="home-process-panel">
+    <div class="container">
+      <div class="row align-items-end gy-4">
+        <div class="col-lg-7">
+          <p class="home-section-label">How it works <i class="home-arrow-up-right-icon" aria-hidden="true"></i></p>
+          <h2 id="process-heading">A structured path from incoming files to an informed legal strategy.</h2>
+        </div>
+        <div class="col-lg-3 ms-auto text-lg-end">
+          <a class="home-button home-button-dark" href="#home">Start with your facts <i class="home-arrow-up-right-icon" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div class="row g-4 home-process-grid">
+        <% steps = [
+          ["01", "Collect and organize", "Bring your case materials together, including counsel PDFs, images, recordings, videos, and other exhibits."],
+          ["02", "Map the timeline", "Place each event in order and connect it to the people, issues, documents, and evidence that give it meaning."],
+          ["03", "Develop the narrative", "Write what happened with the chronology and supporting record beside you, ready to review and refine."],
+          ["04", "Draft and strategize", "Summarize legal documents, plan possible next moves, and use AI assistance to prepare new legal drafts."]
+        ] %>
+        <% steps.each_with_index do |(number, title, description), index| %>
+          <div class="col-lg-3 col-md-6">
+            <article class="home-process-card home-process-card-<%= index + 1 %>">
+              <div class="home-process-visual">
+                <span class="home-process-pill"></span>
+                <span class="home-process-number"><%= number %></span>
+              </div>
+              <h3><%= title %></h3>
+              <p><%= description %></p>
+            </article>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="row align-items-center gy-4 home-process-quote">
+        <div class="col-lg-3">
+          <%= image_tag "home/process-accent.webp", alt: "Abstract glass sculpture", loading: "lazy" %>
+        </div>
+        <div class="col-lg-6">
+          <span class="home-quote-mark">✣</span>
+          <blockquote>“Move from a folder full of disconnected files to a case you can understand, explain, and act on.”</blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -35,6 +35,17 @@
     }
   },
 
+  // Prettier always expands comma-separated SCSS selectors across lines and
+  // has no option to preserve compact selector lists. Use Stylelint's fixer as
+  // the SCSS formatter so the project's one-line selector policy is stable.
+  "[scss]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint",
+    "editor.formatOnSave": true
+    // "editor.codeActionsOnSave": {
+    //   "source.fixAll.stylelint": "never"
+    // }
+  },
+
   // Apply assists before formatting the extension's temporary document. The
   // wrapper also selects the bundled erbfmt with the Ruby pinned in mise.toml.
   "erbfmt.command": "bin/erbfmt-vscode",
