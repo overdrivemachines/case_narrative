@@ -1,25 +1,69 @@
-<h2>Change your password</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
-
-  <div class="field">
-    <p><%= f.label :password, "New password" %></p>
-    <% if @minimum_password_length %>
-      <p><em>(<%= @minimum_password_length %> characters minimum)</em></p>
+<% content_for :title, "Choose a new password · Case Narrative" %>
+<% content_for :devise_top_link do %>
+  <div class="devise-switch-link">
+    <span>Remembered it?</span>
+    <%= link_to new_session_path(resource_name), class: "btn btn-auth-outline" do %>
+      Sign In
+      <svg viewBox="0 0 11 11" aria-hidden="true"><path d="M.75 9.94 9.94.75M3.19.75h6.75V7.5" /></svg>
     <% end %>
-    <p><%= f.password_field :password, autofocus: true, autocomplete: "new-password" %></p>
-  </div>
-
-  <div class="field">
-    <p><%= f.label :password_confirmation, "Confirm new password" %></p>
-    <p><%= f.password_field :password_confirmation, autocomplete: "new-password" %></p>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
   </div>
 <% end %>
 
-<%= render "users/shared/links" %>
+<section class="devise-card" aria-labelledby="new-password-title">
+  <header class="devise-card-header">
+    <span class="devise-card-kicker">Secure your account</span>
+    <h2 id="new-password-title">Choose a new password</h2>
+    <p>Create a strong password you haven’t used for this account before.</p>
+  </header>
+
+  <%= render "users/shared/error_messages", resource: resource %>
+
+  <%= form_for(
+    resource,
+    as: resource_name,
+    url: password_path(resource_name),
+    html: {
+      method: :put,
+      class: "devise-form needs-validation",
+      novalidate: true,
+      data: { controller: "auth-form", action: "submit->auth-form#submit", auth_form_submitting_label_value: "Updating password" }
+    }
+  ) do |f| %>
+    <%= f.hidden_field :reset_password_token %>
+
+    <div class="devise-field">
+      <div class="devise-field-row">
+        <%= f.label :password, "New password" %>
+        <% if @minimum_password_length %><span class="devise-field-hint"><%= @minimum_password_length %> characters minimum</span><% end %>
+      </div>
+      <div class="devise-input-wrap devise-input-wrap-password">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
+        <%= f.password_field :password, autofocus: true, autocomplete: "new-password", placeholder: "Create a new password", required: true, minlength: @minimum_password_length, class: [ "form-control", ("is-invalid" if resource.errors.include?(:password)) ], aria: { invalid: resource.errors.include?(:password) } %>
+        <button class="devise-password-toggle" type="button" aria-label="Show password" aria-pressed="false" data-action="auth-form#togglePassword">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" /><circle cx="12" cy="12" r="2.5" /></svg>
+        </button>
+      </div>
+      <div class="invalid-feedback"><%= resource.errors.full_messages_for(:password).first || "Create a password that meets the minimum length." %></div>
+    </div>
+
+    <div class="devise-field">
+      <%= f.label :password_confirmation, "Confirm new password" %>
+      <div class="devise-input-wrap devise-input-wrap-password">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Enter it again", required: true, minlength: @minimum_password_length, class: [ "form-control", ("is-invalid" if resource.errors.include?(:password_confirmation)) ], aria: { invalid: resource.errors.include?(:password_confirmation) } %>
+        <button class="devise-password-toggle" type="button" aria-label="Show password" aria-pressed="false" data-action="auth-form#togglePassword">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" /><circle cx="12" cy="12" r="2.5" /></svg>
+        </button>
+      </div>
+      <div class="invalid-feedback"><%= resource.errors.full_messages_for(:password_confirmation).first || "Confirm your new password." %></div>
+    </div>
+
+    <%= f.button class: "btn btn-primary-action", data: { auth_form_target: "submit" } do %>
+      <span data-auth-form-target="submitLabel">Update Password</span>
+      <svg viewBox="0 0 11 11" aria-hidden="true"><path d="M.75 9.94 9.94.75M3.19.75h6.75V7.5" /></svg>
+      <span class="btn-loading-spinner" aria-hidden="true"></span>
+    <% end %>
+  <% end %>
+
+  <p class="devise-terms">After updating your password, you’ll be signed in securely.</p>
+</section>
