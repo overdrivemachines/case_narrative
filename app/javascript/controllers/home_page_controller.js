@@ -11,10 +11,10 @@ export default class extends Controller {
 
   // Replace every decorative up-right arrow placeholder used across the home page.
   replaceArrowUpRightIcons() {
-    this.element.querySelectorAll("i.home-arrow-up-right-icon").forEach((icon) => {
+    this.element.querySelectorAll("i.icon-arrow-up-right").forEach((icon) => {
       const svg = this.arrowUpRightIconTemplateTarget.content.firstElementChild.cloneNode(true);
 
-      svg.classList.add("home-arrow-up-right-icon");
+      svg.classList.add("icon-arrow-up-right");
       svg.setAttribute("aria-hidden", "true");
       icon.replaceWith(svg);
     });
