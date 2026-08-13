@@ -3,18 +3,20 @@
   <meta name="description" content="Organize case events, evidence, and documents into a clear, chronological narrative.">
 <% end %>
 
-<section id="home" class="home-hero home-shell" aria-labelledby="home-heading">
+<section id="home" class="home-hero cn-shell" aria-labelledby="home-heading">
   <div class="home-hero-panel" style="--hero-image: url('<%= asset_path("home/hero-bg.webp") %>')">
     <div class="row align-items-start gy-5 position-relative">
       <div class="col-12">
-        <p class="home-eyebrow">[ CASE ORGANIZATION, REIMAGINED ]</p>
+        <p class="home-eyebrow text-kicker">[ CASE ORGANIZATION, REIMAGINED ]</p>
       </div>
 
       <div class="col-xl-5 col-lg-6">
         <h1 id="home-heading">Turn case files into a clear story—and a plan for what comes next.</h1>
         <p class="home-hero-summary">Organize events and evidence, build the narrative of what happened, and use AI to understand legal documents and prepare your next move.</p>
         <div class="home-button-row">
-          <a class="home-button home-button-light" href="#">Start building your case <i class="home-arrow-up-right-icon" aria-hidden="true"></i></a>
+          <%= link_to new_user_registration_path, class: "btn btn-home-light" do %>
+            Start building your case <i class="icon-arrow-up-right" aria-hidden="true"></i>
+          <% end %>
           <a class="home-text-link" href="#process">See how it works <span aria-hidden="true">↓</span></a>
         </div>
       </div>
@@ -36,10 +38,10 @@
 
     <div class="home-hero-lockup">Case Narrative<sup>®</sup></div>
     <div class="home-hero-capabilities">
-      <span>Organize the case <i class="home-arrow-up-right-icon" aria-hidden="true"></i></span>
-      <span>Connect the evidence <i class="home-arrow-up-right-icon" aria-hidden="true"></i></span>
-      <span>Tell what happened <i class="home-arrow-up-right-icon" aria-hidden="true"></i></span>
-      <span>Plan the next move <i class="home-arrow-up-right-icon" aria-hidden="true"></i></span>
+      <span>Organize the case <i class="icon-arrow-up-right" aria-hidden="true"></i></span>
+      <span>Connect the evidence <i class="icon-arrow-up-right" aria-hidden="true"></i></span>
+      <span>Tell what happened <i class="icon-arrow-up-right" aria-hidden="true"></i></span>
+      <span>Plan the next move <i class="icon-arrow-up-right" aria-hidden="true"></i></span>
     </div>
   </div>
 </section>
@@ -48,7 +50,7 @@
   <div class="container">
     <div class="row align-items-end gy-4 home-timeline-heading">
       <div class="col-lg-7">
-        <p class="home-section-label home-section-label-light">The case timeline <i class="home-arrow-up-right-icon" aria-hidden="true"></i></p>
+        <p class="home-section-label home-section-label-light text-kicker">The case timeline <i class="icon-arrow-up-right" aria-hidden="true"></i></p>
         <h2 id="timeline-heading">See the whole case unfold—event by event.</h2>
       </div>
       <div class="col-lg-4 ms-auto">
@@ -137,7 +139,7 @@
   <div class="container">
     <div class="row gy-4 align-items-start home-section-heading">
       <div class="col-lg-2 col-md-3">
-        <p class="home-section-label">What it helps you do <i class="home-arrow-up-right-icon" aria-hidden="true"></i></p>
+        <p class="home-section-label text-kicker">What it helps you do <i class="icon-arrow-up-right" aria-hidden="true"></i></p>
         <%= image_tag "home/gemstone.webp", class: "home-gemstone d-none d-md-block", alt: "", loading: "lazy" %>
       </div>
       <div class="col-lg-6 col-md-9">
@@ -193,12 +195,12 @@
   </div>
 </section>
 
-<section id="documents" class="home-drafting home-shell" aria-labelledby="documents-heading">
+<section id="documents" class="home-drafting cn-shell" aria-labelledby="documents-heading">
   <div class="home-drafting-panel">
     <div class="container">
       <div class="row align-items-end gy-4">
         <div class="col-lg-7">
-          <p class="home-section-label home-section-label-light">AI-assisted legal drafting <i class="home-arrow-up-right-icon" aria-hidden="true"></i></p>
+          <p class="home-section-label home-section-label-light text-kicker">AI-assisted legal drafting <i class="icon-arrow-up-right" aria-hidden="true"></i></p>
           <h2 id="documents-heading">Turn your case record into a working legal draft.</h2>
         </div>
         <div class="col-lg-4 ms-auto">
@@ -263,16 +265,16 @@
   </div>
 </section>
 
-<section id="process" class="home-process home-shell" aria-labelledby="process-heading">
+<section id="process" class="home-process cn-shell" aria-labelledby="process-heading">
   <div class="home-process-panel">
     <div class="container">
       <div class="row align-items-end gy-4">
         <div class="col-lg-7">
-          <p class="home-section-label">How it works <i class="home-arrow-up-right-icon" aria-hidden="true"></i></p>
+          <p class="home-section-label text-kicker">How it works <i class="icon-arrow-up-right" aria-hidden="true"></i></p>
           <h2 id="process-heading">A structured path from incoming files to an informed legal strategy.</h2>
         </div>
         <div class="col-lg-3 ms-auto text-lg-end">
-          <a class="home-button home-button-dark" href="#home">Start with your facts <i class="home-arrow-up-right-icon" aria-hidden="true"></i></a>
+          <%= link_to new_user_registration_path, class: "btn btn-home-dark" do %>Start with your facts <i class="icon-arrow-up-right" aria-hidden="true"></i><% end %>
         </div>
       </div>
 
