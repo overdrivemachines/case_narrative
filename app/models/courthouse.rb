@@ -20,6 +20,8 @@ class Courthouse < ApplicationRecord
   JURISDICTION_LENGTH_RANGE = 2..80
   HOMEPAGE_MAXIMUM_LENGTH = 200
 
+  belongs_to :created_by, class_name: "User", optional: true
+
   auto_strip_attributes :name, :address, :city, :state, :jurisdiction, :homepage
 
   validates :name, :address, :city, :state, :jurisdiction, presence: true
