@@ -146,9 +146,9 @@ GEM
       rainbow
       rubocop (>= 1)
       smart_properties
-    erbfmt (0.3.0)
-    erbfmt (0.3.0-arm64-darwin)
-    erbfmt (0.3.0-x86_64-linux-gnu)
+    erbfmt (0.3.1)
+    erbfmt (0.3.1-arm64-darwin)
+    erbfmt (0.3.1-x86_64-linux-gnu)
     erubi (1.13.1)
     et-orbi (1.4.1)
       tzinfo
@@ -464,7 +464,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   erb_lint
-  erbfmt (= 0.3.0)
+  erbfmt (= 0.3.1)
   faker
   image_processing (~> 2.0)
   jsbundling-rails
@@ -533,9 +533,9 @@ CHECKSUMS
   ed25519 (1.4.0) sha256=16e97f5198689a154247169f3453ef4cfd3f7a47481fde0ae33206cdfdcac506
   erb (6.0.7) sha256=c5ca6dc25b0ef974a44dc8f59fe847577122483b1968a38dec305c60bf91ee92
   erb_lint (0.9.0) sha256=dfb5e40ad839e8d1f0d56ca85ec9a7ac4c9cd966ec281138282f35b323ca7c31
-  erbfmt (0.3.0) sha256=37a05425921517e2788e0da915278f953c3db93c635249ba25957ceda26b06c5
-  erbfmt (0.3.0-arm64-darwin) sha256=c004d7bd1b046789e85e85fd1064e404af0b03db7975706968daf7e7595b2ebd
-  erbfmt (0.3.0-x86_64-linux-gnu) sha256=3e9bf544ba5133d2690c625ed8e576f42062d2a3f57dbd7a2ce2f2417aafb051
+  erbfmt (0.3.1) sha256=85548a08cf780e12ff9d780e1cb70c0df4e6964498aad64e18d933c4b496e24f
+  erbfmt (0.3.1-arm64-darwin) sha256=94c59106428e7f80b7599bf64dda3a5adeba0f6a104a728b3859dae11a878633
+  erbfmt (0.3.1-x86_64-linux-gnu) sha256=60686fed2ec7703e34d2db532eed00d541a3240e490f66ff4b1989de6d0b493f
   erubi (1.13.1) sha256=a082103b0885dbc5ecf1172fede897f9ebdb745a4b97a5e8dc63953db1ee4ad9
   et-orbi (1.4.1) sha256=007e2685b1d873415a7587ef889336c6dcdf8a47fc9c9a63547582b21660a11b
   faker (3.8.0) sha256=c147b308df73a90f27a4fc84f18d4c22ef0ad9c2a64b2b61c86fd0ca71753efc

@@ -11,6 +11,7 @@
     "indentStyle": "space",
     "indentWidth": 2,
     "indentHtml": true,
+    "lineEnding": "lf",
     "lineWidth": 200,
     "trailingNewline": true
   },
@@ -21,12 +22,14 @@
       "emptyErbBranch": "error",
       "emptyErbCodeTag": "error",
       "emptyErbControlBlock": "error",
+      "noDeprecatedHtmlAttribute": "info",
       "noDeprecatedHtmlTag": "error",
       "noDuplicateHtmlAttribute": "error",
       "noInvalidHtmlBooleanAttribute": "error",
       "noInvalidHtmlNesting": "error",
       "noNonDoubleQuotedHtmlAttributeValue": "error",
       "noSelfClosingHtmlTag": "error",
+      "noUnknownHtmlAttribute": "warn",
       "unsupportedErbBlockStarter": "error"
     }
   },

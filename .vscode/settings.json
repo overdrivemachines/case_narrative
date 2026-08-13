@@ -1,4 +1,11 @@
 {
+  // This is JSON with an ERB suffix, not an HTML+ERB template. Treating it as
+  // ERB activates erbfmt, whose HTML parser replaces this document with empty
+  // output. The project scripts likewise restrict erbfmt to *.html.erb files.
+  "files.associations": {
+    "manifest.json.erb": "json"
+  },
+
   // Project-specific stylesheets used for Bootstrap-aware CSS class suggestions.
   "css.styleSheets": ["node_modules/bootstrap/dist/css/bootstrap.css", "node_modules/bootstrap-icons/font/bootstrap-icons.css", "app/assets/stylesheets/**/*.{css,scss}", "app/assets/builds/**/*.css"],
   "css.autoValidation": "Save",
@@ -50,6 +57,7 @@
   // wrapper also selects the bundled erbfmt with the Ruby pinned in mise.toml.
   "erbfmt.command": "bin/erbfmt-vscode",
   "erbfmt.arguments": [],
+  "erbfmt.configPath": "erbfmt.json",
   // Publish erbfmt diagnostics in the Problems panel on file open and save.
   "erbfmt.lint.enabled": true
 }
