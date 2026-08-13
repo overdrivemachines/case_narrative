@@ -125,6 +125,9 @@ mise exec -- bundle exec erb_lint --lint-all --autocorrect
 
 # Format only HTML+ERB templates
 mise exec -- bun run format:erb
+
+# Format a file ignored through .gitignore or .prettierignore
+mise exec -- bunx prettier --write --ignore-path /dev/null vendor/themes/adminator/signin.html
 ```
 
 ## Run the Rails CI workflow
