@@ -1,0 +1,18 @@
+<%# Left side portion of all Devise views.
+  # Called by: app/views/layouts/devise.html.erb %>
+<aside class="devise-aside">
+  <%= link_to root_path, class: "devise-brand", aria: { label: "Case Narrative home" } do %>
+    <%= image_tag "home/logo.png", width: 48, height: 46, alt: "" %>
+    <span>Case Narrative</span>
+  <% end %>
+  <div class="devise-aside-content">
+    <span class="devise-eyebrow">Your case, clearly told</span>
+    <h1>Turn scattered evidence into a story that holds together.</h1>
+    <p>Organize documents, connect the facts, and build a clear case narrative in one focused workspace.</p>
+    <blockquote class="devise-quote">
+      <p>See the chronology, evidence, and people behind your matter—without losing the thread.</p>
+      <footer><span class="devise-quote-mark">CN</span><span>One connected workspace<br><small>From source document to final narrative</small></span></footer>
+    </blockquote>
+  </div>
+  <div class="devise-aside-footer"><span>&copy; <%= Time.current.year %> Case Narrative</span><span>Built for clarity</span></div>
+</aside>

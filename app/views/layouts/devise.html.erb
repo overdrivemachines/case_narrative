@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= content_for(:title) || "Sign in · Case Narrative" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Case Narrative">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= yield :head %>
+    <%= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module", nonce: true %>
+  </head>
+  <body class="devise-page" data-bs-theme="dark">
+    <div class="devise-shell">
+      <%= render "users/shared/auth_aside" %>
+      <main class="devise-main">
+        <div class="devise-main-top">
+          <%= link_to root_path, class: "devise-back-link" do %>
+            <span class="devise-back-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7" /></svg>
+            </span>
+            <span>Back to Home</span>
+          <% end %>
+          <%= yield :devise_top_link %>
+        </div>
+        <%= yield %>
+      </main>
+    </div>
+  </body>
+</html>
