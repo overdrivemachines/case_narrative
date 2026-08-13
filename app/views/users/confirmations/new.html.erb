@@ -1,16 +1,49 @@
-<h2>Resend confirmation instructions</h2>
-
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <p><%= f.label :email %></p>
-    <p><%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %></p>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
+<% content_for :title, "Resend confirmation · Case Narrative" %>
+<% content_for :devise_top_link do %>
+  <div class="devise-switch-link">
+    <span>Already confirmed?</span>
+    <%= link_to new_session_path(resource_name), class: "btn btn-auth-outline" do %>
+      Sign In
+      <svg viewBox="0 0 11 11" aria-hidden="true"><path d="M.75 9.94 9.94.75M3.19.75h6.75V7.5" /></svg>
+    <% end %>
   </div>
 <% end %>
 
-<%= render "users/shared/links" %>
+<section class="devise-card" aria-labelledby="confirmation-title">
+  <header class="devise-card-header">
+    <span class="devise-card-kicker">Check your inbox</span>
+    <h2 id="confirmation-title">Resend confirmation</h2>
+    <p>Enter your email and we'll send a fresh link to confirm your Case Narrative account.</p>
+  </header>
+
+  <%= render "users/shared/error_messages", resource: resource %>
+
+  <%= form_for(
+    resource,
+    as: resource_name,
+    url: confirmation_path(resource_name),
+    html: {
+      method: :post,
+      class: "devise-form needs-validation",
+      novalidate: true,
+      data: { controller: "auth-form", action: "submit->auth-form#submit", auth_form_submitting_label_value: "Sending instructions" }
+    }
+  ) do |f| %>
+    <div class="devise-field">
+      <%= f.label :email %>
+      <div class="devise-input-wrap">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "you@example.com", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), required: true, class: [ "form-control", ("is-invalid" if resource.errors.include?(:email)) ], aria: { invalid: resource.errors.include?(:email) } %>
+      </div>
+      <div class="invalid-feedback"><%= resource.errors.full_messages_for(:email).first || "Enter a valid email address." %></div>
+    </div>
+
+    <%= f.button class: "btn btn-primary-action", data: { auth_form_target: "submit" } do %>
+      <span data-auth-form-target="submitLabel">Resend Confirmation</span>
+      <svg viewBox="0 0 11 11" aria-hidden="true"><path d="M.75 9.94 9.94.75M3.19.75h6.75V7.5" /></svg>
+      <span class="btn-loading-spinner" aria-hidden="true"></span>
+    <% end %>
+  <% end %>
+
+  <p class="devise-help-link">Need a different account? <%= link_to "Create an account", new_registration_path(resource_name) %></p>
+</section>

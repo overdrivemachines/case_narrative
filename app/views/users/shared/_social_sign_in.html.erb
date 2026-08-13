@@ -1,0 +1,20 @@
+<%# Builds the Google and Apple OmniAuth buttons.
+  # Called by: app/views/users/sessions/new.html.erb %>
+<div class="devise-divider"><span>or continue with</span></div>
+<div class="devise-social-row">
+  <% providers = resource_class.omniauth_providers.map(&:to_sym) %>
+  <% { google_oauth2: "Google", apple: "Apple" }.each do |provider, label| %>
+    <% icon = capture do %>
+      <% if provider == :google_oauth2 %>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22 12.2c0-.7-.06-1.4-.18-2.04H12v3.86h5.62a4.81 4.81 0 0 1-2.08 3.16v2.62h3.36C20.85 17.96 22 15.36 22 12.2z"/><path fill="#34A853" d="M12 22c2.7 0 4.96-.9 6.62-2.4l-3.36-2.62c-.94.62-2.12.98-3.26.98-2.5 0-4.62-1.7-5.38-3.96H3.16v2.7A10 10 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.62 13.98a6 6 0 0 1 0-3.96V7.32H3.16a10 10 0 0 0 0 9.36z"/><path fill="#EA4335" d="M12 6.04c1.46 0 2.78.5 3.82 1.5l2.86-2.86A10 10 0 0 0 12 2 10 10 0 0 0 3.16 7.32l3.46 2.7C7.38 7.74 9.5 6.04 12 6.04z"/></svg>
+      <% else %>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.18 1.78-3.22 1.86-3.27-1.02-1.49-2.6-1.7-3.16-1.72-1.34-.13-2.62.79-3.3.79-.7 0-1.74-.78-2.86-.75-1.47.02-2.83.86-3.59 2.18-1.54 2.66-.39 6.6 1.1 8.76.74 1.06 1.6 2.25 2.74 2.21 1.1-.05 1.51-.71 2.84-.71s1.7.71 2.86.69c1.18-.02 1.93-1.07 2.65-2.14.84-1.23 1.18-2.43 1.2-2.49-.03-.01-2.3-.88-2.32-3.55zM14.27 5.6c.6-.74 1.01-1.74.9-2.75-.87.04-1.93.58-2.55 1.3-.55.65-1.04 1.69-.91 2.67.97.07 1.96-.49 2.56-1.22z"/></svg>
+      <% end %>
+    <% end %>
+    <% if providers.include?(provider) %>
+      <%= button_to omniauth_authorize_path(resource_name, provider), class: "btn btn-social-auth devise-social-button", data: { turbo: false } do %><%= icon %><span><%= label %></span><% end %>
+    <% else %>
+      <button class="btn btn-social-auth devise-social-button devise-social-button-unavailable" type="button" aria-disabled="true" title="<%= label %> sign-in is coming soon"><%= icon %><span><%= label %></span></button>
+    <% end %>
+  <% end %>
+</div>

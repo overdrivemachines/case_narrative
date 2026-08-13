@@ -1,16 +1,49 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <p><%= f.label :email %></p>
-    <p><%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Send me password reset instructions" %>
+<% content_for :title, "Reset your password · Case Narrative" %>
+<% content_for :devise_top_link do %>
+  <div class="devise-switch-link">
+    <span>Remembered it?</span>
+    <%= link_to new_session_path(resource_name), class: "btn btn-auth-outline" do %>
+      Sign In
+      <svg viewBox="0 0 11 11" aria-hidden="true"><path d="M.75 9.94 9.94.75M3.19.75h6.75V7.5" /></svg>
+    <% end %>
   </div>
 <% end %>
 
-<%= render "users/shared/links" %>
+<section class="devise-card" aria-labelledby="password-reset-title">
+  <header class="devise-card-header">
+    <span class="devise-card-kicker">Account recovery</span>
+    <h2 id="password-reset-title">Reset your password</h2>
+    <p>Enter the email for your account and we'll send you a secure password-reset link.</p>
+  </header>
+
+  <%= render "users/shared/error_messages", resource: resource %>
+
+  <%= form_for(
+    resource,
+    as: resource_name,
+    url: password_path(resource_name),
+    html: {
+      method: :post,
+      class: "devise-form needs-validation",
+      novalidate: true,
+      data: { controller: "auth-form", action: "submit->auth-form#submit", auth_form_submitting_label_value: "Sending reset link" }
+    }
+  ) do |f| %>
+    <div class="devise-field">
+      <%= f.label :email %>
+      <div class="devise-input-wrap">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "you@example.com", required: true, class: [ "form-control", ("is-invalid" if resource.errors.include?(:email)) ], aria: { invalid: resource.errors.include?(:email) } %>
+      </div>
+      <div class="invalid-feedback"><%= resource.errors.full_messages_for(:email).first || "Enter a valid email address." %></div>
+    </div>
+
+    <%= f.button class: "btn btn-primary-action", data: { auth_form_target: "submit" } do %>
+      <span data-auth-form-target="submitLabel">Send Reset Link</span>
+      <svg viewBox="0 0 11 11" aria-hidden="true"><path d="M.75 9.94 9.94.75M3.19.75h6.75V7.5" /></svg>
+      <span class="btn-loading-spinner" aria-hidden="true"></span>
+    <% end %>
+  <% end %>
+
+  <% if devise_mapping.confirmable? %><p class="devise-help-link">Still waiting for confirmation? <%= link_to "Resend confirmation instructions", new_confirmation_path(resource_name) %></p><% end %>
+</section>

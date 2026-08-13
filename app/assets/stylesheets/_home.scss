@@ -1,11 +1,13 @@
-@import "https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&display=swap";
-
 $home-ink: #1d1d1d;
 $home-black: #0f0f0f;
 $home-panel: #fefefe;
 $home-muted: #b3b3b3;
 $home-page-bg: #141414;
 $home-line: rgb(255 255 255 / 16%);
+
+////////////////////////////////////////////////////////////////////////////////
+// Homepage foundation
+////////////////////////////////////////////////////////////////////////////////
 
 .home-page {
   min-height: 100vh;
@@ -29,11 +31,9 @@ $home-line: rgb(255 255 255 / 16%);
   flex: 1;
 }
 
-.home-shell {
-  width: min(2200px, 100%);
-  margin-inline: auto;
-  padding-inline: 12px;
-}
+////////////////////////////////////////////////////////////////////////////////
+// Header and navigation
+////////////////////////////////////////////////////////////////////////////////
 
 .home-header {
   position: absolute;
@@ -65,6 +65,19 @@ $home-line: rgb(255 255 255 / 16%);
   border-radius: 16px;
   background: rgb(12 12 12 / 90%);
   backdrop-filter: blur(18px);
+
+  .nav-link {
+    padding: 10px 20px 6px !important;
+    color: rgb(255 255 255 / 82%);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1;
+
+    &:hover, &:focus {
+      color: #fff;
+    }
+  }
 }
 
 .home-brand {
@@ -81,27 +94,46 @@ $home-line: rgb(255 255 255 / 16%);
   }
 }
 
-.home-nav .nav-link {
-  padding-inline: 18px !important;
-  color: rgb(255 255 255 / 78%);
-  font-size: 14px;
-  font-weight: 600;
-
-  &:hover, &:focus {
-    color: #fff;
-  }
-}
-
 .home-nav-actions {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 18px;
+  gap: 10px;
+
+  form {
+    margin: 0;
+  }
 }
 
-.home-login-placeholder {
-  color: rgb(255 255 255 / 56%);
-  font-size: 14px;
+.home-nav-text-link {
+  min-height: 42px;
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(255 255 255 / 72%);
+  border: 1px solid transparent;
+  border-radius: 50px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 650;
+  transition: color 180ms ease, border-color 180ms ease, background-color 180ms ease;
+
+  &:hover, &:focus-visible {
+    color: #fff;
+    border-color: rgb(255 255 255 / 20%);
+    background: rgb(255 255 255 / 6%);
+  }
+}
+
+.home-nav-primary {
+  white-space: nowrap;
+
+  .icon-arrow-up-right {
+    width: 11px;
+    height: 11px;
+  }
 }
 
 .home-menu-button {
@@ -119,46 +151,9 @@ $home-line: rgb(255 255 255 / 16%);
   }
 }
 
-.home-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  padding: 15px 20px;
-  border-radius: 7px;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-  transition: transform 180ms ease, background-color 180ms ease;
-
-  &:hover {
-    transform: translateY(-2px);
-  }
-}
-
-.home-arrow-up-right-icon {
-  display: inline-flex;
-  flex: 0 0 auto;
-}
-
-.home-button-dark {
-  color: #fff !important;
-  background: $home-ink;
-
-  &:hover {
-    background: #323232;
-  }
-}
-
-.home-button-light {
-  color: $home-ink !important;
-  background: #fff;
-
-  &:hover {
-    background: #e8e8e8;
-  }
-}
+////////////////////////////////////////////////////////////////////////////////
+// Hero
+////////////////////////////////////////////////////////////////////////////////
 
 .home-hero {
   padding-top: 84px;
@@ -174,13 +169,6 @@ $home-line: rgb(255 255 255 / 16%);
   background-image: linear-gradient(180deg, rgb(0 0 0 / 12%), rgb(0 0 0 / 56%)), var(--hero-image);
   background-position: center;
   background-size: cover;
-}
-
-.home-eyebrow, .home-section-label, .home-footer-label {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
 }
 
 .home-hero h1 {
@@ -296,6 +284,10 @@ $home-line: rgb(255 255 255 / 16%);
     text-transform: uppercase;
   }
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// Timeline and audience
+////////////////////////////////////////////////////////////////////////////////
 
 .home-timeline {
   padding: 120px 0;
@@ -701,6 +693,10 @@ $home-line: rgb(255 255 255 / 16%);
   text-transform: uppercase;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// Feature cards
+////////////////////////////////////////////////////////////////////////////////
+
 .home-features {
   padding: 110px 0;
   color: $home-ink;
@@ -718,7 +714,7 @@ $home-line: rgb(255 255 255 / 16%);
 .home-section-label {
   margin: 0;
 
-  .home-arrow-up-right-icon {
+  .icon-arrow-up-right {
     margin-left: 5px;
   }
 }
@@ -830,6 +826,10 @@ $home-line: rgb(255 255 255 / 16%);
     margin-top: auto;
   }
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// Drafting workspace demonstration
+////////////////////////////////////////////////////////////////////////////////
 
 .home-drafting {
   padding-block: 12px;
@@ -1112,6 +1112,10 @@ $home-line: rgb(255 255 255 / 16%);
   line-height: 1.5;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// Process
+////////////////////////////////////////////////////////////////////////////////
+
 .home-process {
   padding-block: 12px;
   background: #f2f2f2;
@@ -1230,6 +1234,10 @@ $home-line: rgb(255 255 255 / 16%);
   font-size: 38px;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// Footer
+////////////////////////////////////////////////////////////////////////////////
+
 .home-footer {
   padding: 12px 0;
   color: #fff;
@@ -1309,18 +1317,36 @@ $home-line: rgb(255 255 255 / 16%);
   text-transform: uppercase;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// Responsive adjustments
+////////////////////////////////////////////////////////////////////////////////
+
 @media (width <= 991.98px) {
   .home-nav .navbar-collapse {
     padding: 24px 0 4px;
   }
 
   .home-nav .nav-link {
-    padding: 12px 4px !important;
+    padding: 12px 4px 8px !important;
   }
 
   .home-nav-actions {
     margin-top: 14px;
-    justify-content: flex-start;
+    padding-top: 18px;
+    justify-content: stretch;
+    border-top: 1px solid rgb(255 255 255 / 12%);
+  }
+
+  .home-nav-text-link, .home-nav-actions form {
+    flex: 1;
+  }
+
+  .home-nav-primary {
+    margin-left: auto;
+  }
+
+  .home-nav-actions form .home-nav-text-link {
+    width: 100%;
   }
 
   .home-hero-panel {

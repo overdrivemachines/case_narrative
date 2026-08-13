@@ -1,0 +1,12 @@
+Your Case Narrative email has changed
+
+Hello <%= @resource.name.presence || @email %>,
+
+<% if @resource.try(:unconfirmed_email?) %>
+A request was made to change your account email to <%= @resource.unconfirmed_email %>.
+The change will be completed after the new address is confirmed.
+<% else %>
+Your account email has been changed to <%= @resource.email %>.
+<% end %>
+
+If you didn't make this change, secure your account immediately by resetting your password.

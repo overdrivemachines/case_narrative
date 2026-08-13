@@ -1,7 +1,15 @@
-<p>Hello <%= @email %>!</p>
+<% content_for :email_preheader, "The email address on your Case Narrative account is changing." %>
+<p class="email-kicker">Account notice</p>
+<h1 class="email-title">Your email has changed</h1>
+<p class="email-copy email-copy-strong">Hello <%= @resource.name.presence || @email %>,</p>
 
 <% if @resource.try(:unconfirmed_email?) %>
-  <p>We're contacting you to notify you that your email is being changed to <%= @resource.unconfirmed_email %>.</p>
+  <p class="email-copy">A request was made to change the email address on your Case Narrative account. The new address is:</p>
+  <p class="email-detail"><%= @resource.unconfirmed_email %></p>
+  <p class="email-copy">The change will be completed after the new address is confirmed.</p>
 <% else %>
-  <p>We're contacting you to notify you that your email has been changed to <%= @resource.email %>.</p>
+  <p class="email-copy">The email address on your Case Narrative account has been changed to:</p>
+  <p class="email-detail"><%= @resource.email %></p>
 <% end %>
+
+<p class="email-note">If you didn't make this change, secure your account immediately by resetting your password.</p>

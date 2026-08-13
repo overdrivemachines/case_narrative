@@ -1,26 +1,51 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <p><%= f.label :email %></p>
-    <p><%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
-  </div>
-
-  <div class="field">
-    <p><%= f.label :password %></p>
-    <p><%= f.password_field :password, autocomplete: "current-password" %></p>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <p><%= f.check_box :remember_me %></p>
-      <p><%= f.label :remember_me %></p>
-    </div>
+<% content_for :title, "Welcome back · Case Narrative" %>
+<% content_for :devise_top_link do %>
+  <% if devise_mapping.registerable? %>
+    <div class="devise-switch-link"><span>New here?</span><%= link_to new_registration_path(resource_name), class: "btn btn-auth-outline" do %>Create Account <svg viewBox="0 0 11 11" aria-hidden="true"><path d="M.75 9.94 9.94.75M3.19.75h6.75V7.5" /></svg><% end %></div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
 <% end %>
 
-<%= render "users/shared/links" %>
+<section class="devise-card" aria-labelledby="sign-in-title">
+  <header class="devise-card-header">
+    <span class="devise-card-kicker">Welcome back</span>
+    <h2 id="sign-in-title">Sign in to your account</h2>
+    <p>Pick up where you left off and keep your case moving forward.</p>
+  </header>
+  <% if alert.present? %><div class="devise-message devise-message-alert" role="alert"><%= alert %></div><% end %>
+  <% if notice.present? %><div class="devise-message devise-message-notice" role="status"><%= notice %></div><% end %>
+  <%= form_for(
+    resource,
+    as: resource_name,
+    url: session_path(resource_name),
+    html: {
+      class: "devise-form needs-validation",
+      novalidate: true,
+      data: { controller: "auth-form", action: "submit->auth-form#submit", auth_form_submitting_label_value: "Signing in" }
+    }
+  ) do |f| %>
+    <div class="devise-field">
+      <%= f.label :email %>
+      <div class="devise-input-wrap">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "you@example.com", required: true, class: "form-control" %></div>
+      <div class="invalid-feedback">Enter a valid email address.</div>
+    </div>
+    <div class="devise-field">
+      <div class="devise-field-row"><%= f.label :password %><% if devise_mapping.recoverable? %><%= link_to "Forgot Password?", new_password_path(resource_name) %><% end %></div>
+      <div class="devise-input-wrap devise-input-wrap-password">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
+        <%= f.password_field :password, autocomplete: "current-password", placeholder: "Enter your password", required: true, class: "form-control" %>
+        <button class="devise-password-toggle" type="button" aria-label="Show password" aria-pressed="false" data-action="auth-form#togglePassword">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" /><circle cx="12" cy="12" r="2.5" /></svg>
+        </button>
+      </div>
+      <div class="invalid-feedback">Enter your password.</div>
+    </div>
+    <% if devise_mapping.rememberable? %>
+      <label class="devise-check"><%= f.check_box :remember_me %><span aria-hidden="true"></span>Keep me signed in</label>
+    <% end %>
+    <%= f.button class: "btn btn-primary-action", data: { auth_form_target: "submit" } do %><span data-auth-form-target="submitLabel">Sign In</span><svg viewBox="0 0 11 11" aria-hidden="true"><path d="M.75 9.94 9.94.75M3.19.75h6.75V7.5" /></svg><span class="btn-loading-spinner" aria-hidden="true"></span><% end %>
+  <% end %>
+  <%= render "users/shared/social_sign_in" %>
+  <% if devise_mapping.confirmable? %><p class="devise-help-link">Still waiting for your email? <%= link_to "Resend confirmation instructions", new_confirmation_path(resource_name) %></p><% end %>
+</section>

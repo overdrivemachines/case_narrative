@@ -1,28 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title><%= content_for(:title) || "Case Narrative" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Case Narrative">
-    <meta name="mobile-web-app-capable" content="yes">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= yield :head %>
-
-    <%= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
-    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
-
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module", nonce: true %>
-
+    <%= render "layouts/document_head", default_title: "Case Narrative" %>
   </head>
 
-  <body>
+  <body data-bs-theme="dark">
     <%= yield %>
   </body>
 </html>

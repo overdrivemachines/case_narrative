@@ -27,10 +27,12 @@ Devise.setup do |config|
   config.mailer_sender = "noreply@casenarrative.com"
 
   # Configure the class responsible to send e-mails.
-  # config.mailer = 'Devise::Mailer'
+  config.mailer = "Users::Mailer"
 
   # Configure the parent class responsible to send e-mails.
-  # config.parent_mailer = 'ActionMailer::Base'
+  # Route Devise mail through the application mailer so authentication emails
+  # share the branded layout and Premailer CSS-inlining pipeline.
+  config.parent_mailer = "ApplicationMailer"
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and

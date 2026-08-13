@@ -1,5 +1,9 @@
-<p>Welcome <%= @email %>!</p>
+<% content_for :email_preheader, "Confirm your email to finish setting up Case Narrative." %>
+<p class="email-kicker">Welcome to Case Narrative</p>
+<h1 class="email-title">Confirm your email</h1>
+<p class="email-copy email-copy-strong">Hello <%= @resource.name.presence || @email %>,</p>
+<p class="email-copy">You're one step away from bringing your facts, evidence, and documents together. Confirm your email address to activate your account.</p>
 
-<p>You can confirm your account email through the link below:</p>
+<%= render "users/mailer/action", label: "Confirm My Account", url: confirmation_url(@resource, confirmation_token: @token) %>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p class="email-note">If you didn't create a Case Narrative account, you can safely ignore this email.</p>

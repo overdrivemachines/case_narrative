@@ -10,14 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_12_220301) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_13_190000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "users", id: :uuid, default: -> { "uuidv7()" }, force: :cascade do |t|
+    t.string "address_line_1"
+    t.string "address_line_2"
+    t.string "city"
     t.datetime "confirmation_sent_at"
     t.string "confirmation_token"
     t.datetime "confirmed_at"
+    t.string "country_code", limit: 2
     t.datetime "created_at", null: false
     t.datetime "current_sign_in_at"
     t.string "current_sign_in_ip"
@@ -27,10 +31,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_12_220301) do
     t.datetime "last_sign_in_at"
     t.string "last_sign_in_ip"
     t.datetime "locked_at"
+    t.string "name"
+    t.string "phone"
+    t.string "postal_code"
     t.datetime "remember_created_at"
     t.datetime "reset_password_sent_at"
     t.string "reset_password_token"
     t.integer "sign_in_count", default: 0, null: false
+    t.string "state"
     t.string "unconfirmed_email"
     t.string "unlock_token"
     t.datetime "updated_at", null: false

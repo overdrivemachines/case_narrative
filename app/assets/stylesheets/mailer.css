@@ -1,0 +1,159 @@
+/* Case Narrative transactional email styles. Premailer inlines these rules. */
+body {
+  width: 100% !important;
+  margin: 0;
+  padding: 0;
+  color: #f4f4f4;
+  background: #0c0c0c;
+  font-family: "DM Sans", Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img {
+  display: block;
+  border: 0;
+}
+
+.email-preheader {
+  display: none !important;
+  overflow: hidden;
+  width: 0;
+  height: 0;
+  max-width: 0;
+  max-height: 0;
+  color: transparent;
+  opacity: 0;
+}
+
+.email-page {
+  width: 100%;
+  background: #0c0c0c;
+}
+
+.email-shell {
+  width: 100%;
+  max-width: 640px;
+}
+
+.email-header {
+  padding: 36px 24px 24px;
+}
+
+.email-brand {
+  color: #fff;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  text-decoration: none;
+}
+
+.email-brand-logo {
+  width: 38px;
+  height: auto;
+}
+
+.email-card {
+  padding: 48px;
+  border: 1px solid #2d2d2d;
+  border-radius: 24px;
+  background: #141414;
+}
+
+.email-kicker {
+  margin: 0 0 14px;
+  color: #f0460e;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.email-title {
+  margin: 0 0 24px;
+  color: #fff;
+  font-size: 38px;
+  font-weight: 600;
+  letter-spacing: -1.5px;
+  line-height: 1.05;
+}
+
+.email-copy {
+  margin: 0 0 18px;
+  color: #b3b3b3;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.email-copy-strong {
+  color: #f4f4f4;
+}
+
+.email-action-cell {
+  padding: 14px 0 30px;
+}
+
+.email-action {
+  display: inline-block;
+  padding: 16px 24px;
+  border: 1px solid #f0460e;
+  border-radius: 50px;
+  color: #fff !important;
+  background: #f0460e;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.email-note {
+  margin-top: 12px;
+  padding-top: 22px;
+  border-top: 1px solid #2d2d2d;
+  color: #858585;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.email-detail {
+  margin: 24px 0;
+  padding: 16px 18px;
+  border-left: 3px solid #f0460e;
+  color: #f4f4f4;
+  background: #1d1d1d;
+  font-size: 15px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.email-footer {
+  padding: 24px 24px 40px;
+  color: #737474;
+  font-size: 12px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.email-footer a {
+  color: #b3b3b3;
+  text-decoration: underline;
+}
+
+@media only screen and (width <= 600px) {
+  .email-header {
+    padding: 26px 18px 18px !important;
+  }
+
+  .email-card {
+    padding: 34px 24px !important;
+    border-radius: 18px !important;
+  }
+
+  .email-title {
+    font-size: 32px !important;
+  }
+}
