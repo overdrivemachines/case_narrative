@@ -25,19 +25,20 @@ gem "thruster", require: false # Add HTTP asset caching/compression and X-Sendfi
 gem "ruby-vips", "~> 2.3" # libvips backend for Active Storage variants
 gem "image_processing", "~> 2.0" # Use Active Storage variants
 
+gem "auto_strip_attributes", "~> 2.6" # Remove unnecessary whitespaces from ActiveRecord or ActiveModel attributes
+gem "premailer-rails", "~> 1.12" # Inline email CSS before delivery.
+
 gem "devise" # Authentication
 gem "omniauth", ">= 1.0"
 
 # gem "devise_invitable" # Invite users (attorney invites defendant)
 # gem "pundit" # Authorization (roles, permissions, access control)
 # gem "pg_search" # Full-text search using PostgreSQL
-# gem "premailer-rails", "~> 1.12" # Inline email CSS before delivery.
 # gem "validate_url" # Validate URLs
 # gem "pagy", "~> 43.5" # Pagination / infinite scrolling
 # gem "ransack", "~> 4.4" # Search
 # gem "validates_timeliness" # Validate dates and date ranges
 # gem "paper_trail" # Track changes (who edited what and when)
-# gem "auto_strip_attributes", "~> 2.6" # Remove unnecessary whitespaces from ActiveRecord or ActiveModel attributes
 # gem "page_title_helper", "~> 10.0" # Internationalized page titles and headings
 
 group :development, :test do
