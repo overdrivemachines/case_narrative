@@ -1,0 +1,238 @@
+$brand-orange: #f0460e;
+$brand-orange-hover: #ff5c27;
+$button-dark: #141414;
+$button-dark-hover: #1d1d1d;
+$button-border: #2d2d2d;
+
+////////////////////////////////////////////////////////////////////////////////
+// Button foundations and visual treatments
+////////////////////////////////////////////////////////////////////////////////
+
+// Shared geometry, typography, transitions, and keyboard focus treatment for
+// every custom button variant. Variant mixins below supply color and surface.
+@mixin button-base($height, $padding, $font-size) {
+  min-height: $height;
+  padding: $padding;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid transparent;
+  border-radius: 50px;
+  font: inherit;
+  font-size: $font-size;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  transition: color 200ms ease, border-color 200ms ease, background-color 200ms ease, transform 200ms ease;
+
+  &:focus-visible {
+    outline: 3px solid rgb(240 70 14 / 28%);
+    outline-offset: 2px;
+  }
+
+  svg {
+    flex: 0 0 auto;
+    transition: transform 200ms ease;
+  }
+}
+
+// Solid Case Narrative brand treatment used for primary calls to action.
+@mixin button-brand-primary {
+  color: #fff;
+  border-color: $brand-orange;
+  background: $brand-orange;
+
+  &:hover {
+    color: #fff;
+    border-color: $brand-orange-hover;
+    background: $brand-orange-hover;
+    transform: translateY(-2px);
+
+    svg {
+      transform: translate(2px, -2px);
+    }
+  }
+}
+
+// Subtle dark-surface outline treatment used for secondary authentication
+// actions, such as switching between sign-in and registration.
+@mixin button-dark-outline {
+  color: #f4f4f4;
+  border-color: #414141;
+  background: rgb(255 255 255 / 2%);
+
+  &:hover {
+    color: #fff;
+    border-color: $brand-orange;
+    background: $brand-orange;
+
+    svg {
+      transform: translate(2px, -2px);
+    }
+  }
+}
+
+// Neutral provider-button treatment for Google, Apple, and future OAuth
+// services. Provider icons supply their own identifying colors where needed.
+@mixin button-social {
+  color: #f4f4f4;
+  border-color: $button-border;
+  background: $button-dark;
+
+  &:hover {
+    color: #fff;
+    border-color: #555;
+    background: $button-dark-hover;
+  }
+}
+
+// Light homepage CTA for use on dark or photographic surfaces.
+@mixin button-home-light {
+  color: #1d1d1d;
+  border-color: #fefefe;
+  background: #fefefe;
+
+  &:hover {
+    color: #1d1d1d;
+    border-color: #e8e8e8;
+    background: #e8e8e8;
+    transform: translateY(-2px);
+
+    svg {
+      transform: translate(2px, -2px);
+    }
+  }
+}
+
+// Dark homepage CTA for use on light content panels.
+@mixin button-home-dark {
+  color: #fff;
+  border-color: #1d1d1d;
+  background: #1d1d1d;
+
+  &:hover {
+    color: #fff;
+    border-color: #323232;
+    background: #323232;
+    transform: translateY(-2px);
+
+    svg {
+      transform: translate(2px, -2px);
+    }
+  }
+}
+
+// Full-width primary form action. This builds on the brand treatment and adds
+// larger form sizing plus reusable loading-state behavior.
+@mixin button-primary-action {
+  @include button-brand-primary;
+
+  width: 100%;
+  min-height: 54px;
+
+  > svg {
+    width: 13px;
+    fill: none;
+    stroke: currentcolor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  &:disabled {
+    cursor: wait;
+    opacity: 0.8;
+    transform: none;
+  }
+
+  &.is-loading > svg {
+    display: none;
+  }
+
+  &.is-loading .btn-loading-spinner {
+    display: block;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Public button classes
+////////////////////////////////////////////////////////////////////////////////
+
+// Classes in this section extend Bootstrap's `.btn` API. Keep page-specific
+// positioning outside this file so these variants remain portable.
+
+// Bootstrap-compatible primary brand button. Pair with Bootstrap's `.btn`
+// class in markup so its behavior remains familiar throughout the application.
+.btn.btn-brand-primary {
+  @include button-base(48px, 13px 21px, 16px);
+  @include button-brand-primary;
+
+  letter-spacing: -0.025em;
+}
+
+// Compact outlined authentication button with the Orisa-inspired pill shape.
+.btn.btn-auth-outline {
+  @include button-base(38px, 9px 15px, 14px);
+  @include button-dark-outline;
+
+  font-weight: 650;
+}
+
+// Full-width social authentication button for use in provider button grids.
+.btn.btn-social-auth {
+  @include button-base(48px, 10px 16px, 14px);
+  @include button-social;
+
+  width: 100%;
+}
+
+// Prominent full-width submit action for authentication and application forms.
+.btn.btn-primary-action {
+  @include button-base(54px, 14px 22px, 16px);
+  @include button-primary-action;
+
+  letter-spacing: -0.025em;
+}
+
+.btn-loading-spinner {
+  width: 16px;
+  height: 16px;
+  display: none;
+  border: 2px solid rgb(255 255 255 / 38%);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: btn-loading-spin 0.7s linear infinite;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Button animation
+////////////////////////////////////////////////////////////////////////////////
+
+@keyframes btn-loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Light pill-shaped homepage call to action.
+.btn.btn-home-light {
+  @include button-base(50px, 15px 20px, 13px);
+  @include button-home-light;
+
+  gap: 20px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+// Dark pill-shaped homepage call to action.
+.btn.btn-home-dark {
+  @include button-base(50px, 15px 20px, 13px);
+  @include button-home-dark;
+
+  gap: 20px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
