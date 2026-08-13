@@ -95,7 +95,7 @@ The application uses the following development tools:
 
 Formatters and linters solve different problems. A formatter rewrites presentation—spacing, indentation, wrapping, and line breaks—without deciding whether the code is logically sound. A linter analyzes the code for errors, questionable constructs, framework conventions, and project-specific rules. Using both is intentional: formatting makes the code consistent, while linting helps make it correct and maintainable.
 
-For SCSS and embedded CSS, Stylelint performs a small formatting pass after Prettier. This preserves comma-separated selectors and values on one line, which is an explicit project convention that Prettier cannot configure by itself. VS Code uses the same order on save: Prettier formats first, then the Stylelint save action runs.
+For SCSS, the project formatter runs Prettier and then a PostCSS pass that joins multiline selector lists when the resulting line is no longer than 200 characters. Stylelint runs afterward to enforce the selector and value-list conventions. This preserves compact comma-separated selectors without allowing arbitrarily long selector lines, a behavior Prettier cannot configure by itself.
 
 Plain HTML also uses `@awmottaz/prettier-plugin-void-html`, which makes Prettier emit modern void elements such as `<meta>` and `<br>` without XHTML-style trailing slashes. The plugin applies only to `.html` files; ERB remains formatted by erbfmt.
 
@@ -125,6 +125,9 @@ mise exec -- bundle exec erb_lint --lint-all --autocorrect
 
 # Format only HTML+ERB templates
 mise exec -- bun run format:erb
+
+# Format SCSS with Prettier, then keep selector lists on one line when they fit
+mise exec -- bun run format:scss
 
 # Format a file ignored through .gitignore or .prettierignore
 mise exec -- bunx prettier --write --ignore-path /dev/null vendor/themes/adminator/signin.html
