@@ -1,5 +1,7 @@
+<%# Header contains logo, navigation links, and sign-in and sign-up %>
+<%# Called by: app/views/layouts/home.html.erb %>
 <header class="home-header">
-  <div class="home-shell">
+  <div class="cn-shell">
     <div class="home-topbar">
       <span>A clearer way to build your case</span>
       <span class="d-none d-md-inline">Securely organize events, evidence, and documents</span>
@@ -26,15 +28,24 @@
 
         <div id="home-navigation" class="collapse navbar-collapse">
           <ul class="navbar-nav mx-auto">
-            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="#timeline">Timeline</a></li>
-            <li class="nav-item"><a class="nav-link" href="#documents">Legal drafting</a></li>
-            <li class="nav-item"><a class="nav-link" href="#process">How it works</a></li>
+            <% { "Home" => "#home", "Timeline" => "#timeline", "Legal drafting" => "#documents", "How it works" => "#process" }.each do |label, destination| %>
+              <li class="nav-item">
+                <%= link_to destination, class: "nav-link" do %>
+                  <span class="link-swap"><span><%= label %></span><span aria-hidden="true"><%= label %></span></span>
+                <% end %>
+              </li>
+            <% end %>
           </ul>
 
           <div class="home-nav-actions">
-            <span class="home-login-placeholder">Log in</span>
-            <a class="home-button home-button-dark" href="#">Start your case <i class="home-arrow-up-right-icon" aria-hidden="true"></i></a>
+            <% if user_signed_in? %>
+              <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "home-nav-text-link" %>
+            <% else %>
+              <%= link_to "Sign In", new_user_session_path, class: "home-nav-text-link" %>
+              <%= link_to new_user_registration_path, class: "btn btn-brand-primary home-nav-primary" do %>
+                <span>Create Account</span><i class="icon-arrow-up-right" aria-hidden="true"></i>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>
