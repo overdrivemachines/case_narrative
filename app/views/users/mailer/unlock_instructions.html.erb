@@ -1,7 +1,9 @@
-<p>Hello <%= @resource.email %>!</p>
+<% content_for :email_preheader, "Unlock your Case Narrative account and restore access." %>
+<p class="email-kicker">Restore access</p>
+<h1 class="email-title">Unlock your account</h1>
+<p class="email-copy email-copy-strong">Hello <%= @resource.name.presence || @resource.email %>,</p>
+<p class="email-copy">Your account was locked after several unsuccessful sign-in attempts. Use the secure link below to unlock it.</p>
 
-<p>Your account has been locked due to an excessive number of unsuccessful sign in attempts.</p>
+<%= render "users/mailer/action", label: "Unlock My Account", url: unlock_url(@resource, unlock_token: @token) %>
 
-<p>Click the link below to unlock your account:</p>
-
-<p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token) %></p>
+<p class="email-note">If these sign-in attempts weren't yours, unlock the account and reset your password before signing in again.</p>
