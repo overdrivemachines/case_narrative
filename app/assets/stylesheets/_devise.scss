@@ -268,6 +268,10 @@ $auth-primary: #f0460e;
   padding: 60px 0 40px;
 }
 
+.devise-card-registration {
+  width: min(100%, 480px);
+}
+
 .devise-card-header {
   margin-bottom: 30px;
 }
@@ -311,6 +315,17 @@ $auth-primary: #f0460e;
   background: rgb(85 185 111 / 11%);
 }
 
+.devise-error-summary {
+  p {
+    margin: 0 0 6px;
+    font-weight: 700;
+  }
+
+  ul {
+    padding-left: 20px;
+  }
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // Form fields and controls
 ////////////////////////////////////////////////////////////////////////////////
@@ -336,6 +351,12 @@ $auth-primary: #f0460e;
   display: flex;
   justify-content: space-between;
   gap: 18px;
+}
+
+.devise-field-hint {
+  color: $auth-muted;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .devise-input-wrap {
@@ -374,6 +395,31 @@ $auth-primary: #f0460e;
   padding-right: 52px;
 }
 
+// Bootstrap places its valid/invalid status icon at the input's right edge.
+// Once that icon is active, reserve additional room and shift the password
+// visibility control left so the two controls never overlap.
+.devise-input-wrap-password {
+  &:has(input.is-valid, input.is-invalid) {
+    input {
+      // padding-right: 82px;
+    }
+
+    .devise-password-toggle {
+      right: 25px;
+    }
+  }
+
+  .was-validated &:has(input:valid, input:invalid) {
+    input {
+      // padding-right: 82px;
+    }
+
+    .devise-password-toggle {
+      right: 25px;
+    }
+  }
+}
+
 .devise-input-wrap input::placeholder {
   color: #6f6f6f;
 }
@@ -382,6 +428,20 @@ $auth-primary: #f0460e;
   border-color: $auth-primary;
   box-shadow: 0 0 0 3px rgb(240 70 14 / 16%);
   background: $auth-raised;
+}
+
+// Bootstrap's validation feedback lives outside the positioned input wrapper,
+// so field state controls when the message becomes visible.
+.devise-field {
+  > .invalid-feedback {
+    margin-top: 7px;
+    color: #ff9b87;
+    font-size: 12px;
+  }
+
+  &:has(.is-invalid) > .invalid-feedback, .was-validated &:has(input:invalid) > .invalid-feedback {
+    display: block;
+  }
 }
 
 .devise-password-toggle {
@@ -397,6 +457,7 @@ $auth-primary: #f0460e;
   border: 0;
   border-radius: 50%;
   background: transparent;
+  transition: right 0.2s ease, color 0.2s ease;
 }
 
 .devise-password-toggle:hover, .devise-password-toggle[aria-pressed="true"] {
@@ -505,6 +566,15 @@ $auth-primary: #f0460e;
   margin: 22px 0 0;
   color: #767676;
   font-size: 14px;
+  text-align: center;
+}
+
+.devise-terms {
+  margin: 20px auto 0;
+  max-width: 390px;
+  color: #767676;
+  font-size: 12px;
+  line-height: 1.55;
   text-align: center;
 }
 

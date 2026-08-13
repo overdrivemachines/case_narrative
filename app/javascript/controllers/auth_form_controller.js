@@ -1,22 +1,35 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["password", "passwordToggle", "submit", "submitLabel"];
+  static targets = ["submit", "submitLabel"];
+  static values = { submittingLabel: { type: String, default: "Working" } };
 
-  togglePassword() {
-    const showing = this.passwordTarget.type === "text";
+  connect() {
+    if (this.hasSubmitLabelTarget) this.defaultSubmitLabel = this.submitLabelTarget.textContent;
+  }
 
-    this.passwordTarget.type = showing ? "password" : "text";
-    this.passwordToggleTarget.setAttribute("aria-pressed", String(!showing));
-    this.passwordToggleTarget.setAttribute("aria-label", showing ? "Show password" : "Hide password");
+  togglePassword(event) {
+    const toggle = event.currentTarget;
+    const password = toggle.closest(".devise-input-wrap-password").querySelector("input");
+    const showing = password.type === "text";
+
+    password.type = showing ? "password" : "text";
+    toggle.setAttribute("aria-pressed", String(!showing));
+    toggle.setAttribute("aria-label", showing ? "Show password" : "Hide password");
   }
 
   submit(event) {
-    if (!this.element.checkValidity()) return;
+    this.element.classList.add("was-validated");
+
+    if (!this.element.checkValidity()) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      return;
+    }
 
     this.submitTarget.disabled = true;
     this.submitTarget.classList.add("is-loading");
-    this.submitLabelTarget.textContent = "Signing in";
+    this.submitLabelTarget.textContent = this.submittingLabelValue;
 
     // Native form submissions do not need this, but Turbo may cancel a request.
     event.target.addEventListener("turbo:submit-end", () => this.resetSubmit(), { once: true });
@@ -25,6 +38,6 @@ export default class extends Controller {
   resetSubmit() {
     this.submitTarget.disabled = false;
     this.submitTarget.classList.remove("is-loading");
-    this.submitLabelTarget.textContent = "Sign in";
+    this.submitLabelTarget.textContent = this.defaultSubmitLabel;
   }
 }
