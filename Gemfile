@@ -26,6 +26,7 @@ gem "ruby-vips", "~> 2.3" # libvips backend for Active Storage variants
 gem "image_processing", "~> 2.0" # Use Active Storage variants
 
 gem "auto_strip_attributes", "~> 2.6" # Remove unnecessary whitespaces from ActiveRecord or ActiveModel attributes
+gem "validate_url" # Validate URLs
 gem "premailer-rails", "~> 1.12" # Inline email CSS before delivery.
 
 gem "devise" # Authentication
@@ -34,7 +35,7 @@ gem "omniauth", ">= 1.0"
 # gem "devise_invitable" # Invite users (attorney invites defendant)
 # gem "pundit" # Authorization (roles, permissions, access control)
 # gem "pg_search" # Full-text search using PostgreSQL
-# gem "validate_url" # Validate URLs
+
 # gem "pagy", "~> 43.5" # Pagination / infinite scrolling
 # gem "ransack", "~> 4.4" # Search
 # gem "validates_timeliness" # Validate dates and date ranges
