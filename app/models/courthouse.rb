@@ -33,7 +33,7 @@ class Courthouse < ApplicationRecord
   validates :name, length: { in: NAME_LENGTH_RANGE }, uniqueness: { case_sensitive: false }
   validates :address, length: { in: ADDRESS_LENGTH_RANGE }
   validates :city, length: { in: CITY_LENGTH_RANGE }
-  validates :state, length: { is: STATE_LENGTH }
+  validates :state, length: { is: STATE_LENGTH }, inclusion: { in: UsStates::CODES }
   validates :jurisdiction, length: { in: JURISDICTION_LENGTH_RANGE }
   validates :homepage, length: { maximum: HOMEPAGE_MAXIMUM_LENGTH }, allow_blank: true
   validates :homepage, url: { allow_blank: true }
