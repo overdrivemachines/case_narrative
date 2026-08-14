@@ -39,6 +39,7 @@
 
           <div class="home-nav-actions">
             <% if user_signed_in? %>
+              <%= link_to "Dashboard", dashboard_path, class: "home-nav-text-link" %>
               <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "home-nav-text-link" %>
             <% else %>
               <%= link_to "Sign In", new_user_session_path, class: "home-nav-text-link" %>
