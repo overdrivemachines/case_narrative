@@ -23,7 +23,7 @@ gem "kamal", require: false # Deploy this application anywhere as a Docker conta
 gem "thruster", require: false # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma
 
 gem "ruby-vips", "~> 2.3" # libvips backend for Active Storage variants
-gem "image_processing", "~> 2.0" # Use Active Storage variants
+gem "image_processing", "~> 2.1" # Use Active Storage variants
 
 gem "auto_strip_attributes", "~> 2.6" # Remove unnecessary whitespaces from ActiveRecord or ActiveModel attributes
 gem "validate_url" # Validate URLs
