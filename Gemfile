@@ -25,7 +25,7 @@ gem "thruster", require: false # Add HTTP asset caching/compression and X-Sendfi
 gem "ruby-vips", "~> 2.3" # libvips backend for Active Storage variants
 gem "image_processing", "~> 2.0" # Use Active Storage variants
 
-gem "auto_strip_attributes", "~> 2.6" # Remove unnecessary whitespaces from ActiveRecord or ActiveModel attributes
+gem "auto_strip_attributes", "~> 3.0" # Remove unnecessary whitespaces from ActiveRecord or ActiveModel attributes
 gem "validate_url" # Validate URLs
 gem "premailer-rails", "~> 1.12" # Inline email CSS before delivery.
 
