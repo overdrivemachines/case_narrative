@@ -1,6 +1,6 @@
 {
   "files": {
-    "includes": ["**/*.html.erb"]
+    "includes": ["**/*.html.erb", "**/*.turbo_stream.erb"]
   },
   "parser": {
     "allowHtmlOptionalClosingTags": false,
@@ -35,7 +35,7 @@
   },
   "assist": {
     "enabled": true,
-    "includes": ["**/*.html.erb"],
+    "includes": ["**/*.html.erb", "**/*.turbo_stream.erb"],
     "actions": {
       "html.useDoubleQuotedAttributes": true,
       "html.fixSelfClosingTags": true,
