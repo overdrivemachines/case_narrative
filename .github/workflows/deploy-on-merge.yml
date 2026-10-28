@@ -1,0 +1,84 @@
+name: Deploy on Merge to Main
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      REPOSITORY_NAME: ${{ github.event.repository.name }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7.0.1
+
+      - name: Validate required secrets
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$HOST" || { echo "DEPLOY_HOST is missing"; exit 1; }
+          test -n "$USER" || { echo "DEPLOY_USER is missing"; exit 1; }
+          test -n "$SSH_PRIVATE_KEY" || { echo "SSH_PRIVATE_KEY is missing"; exit 1; }
+
+      - name: Configure known_hosts
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          PORT: ${{ secrets.DEPLOY_PORT }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          port="${PORT:-22}"
+          ssh-keyscan -p "$port" "$HOST" >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+      - name: Start SSH agent and add key
+        uses: webfactory/ssh-agent@v0.10.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Upload update.sh
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          PORT: ${{ secrets.DEPLOY_PORT }}
+        run: |
+          set -euo pipefail
+          port="${PORT:-22}"
+          remote_dir="/var/www/${REPOSITORY_NAME}"
+
+          scp -P "$port" \
+            -o BatchMode=yes \
+            -o StrictHostKeyChecking=yes \
+            update.sh "$USER@$HOST:$remote_dir/update.sh"
+
+          ssh -p "$port" \
+            -o BatchMode=yes \
+            -o StrictHostKeyChecking=yes \
+            "$USER@$HOST" \
+            "chmod +x $remote_dir/update.sh"
+
+      - name: Deploy on server
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          PORT: ${{ secrets.DEPLOY_PORT }}
+        run: |
+          set -euo pipefail
+          port="${PORT:-22}"
+          remote_dir="/var/www/${REPOSITORY_NAME}"
+
+          ssh -p "$port" \
+            -o BatchMode=yes \
+            -o StrictHostKeyChecking=yes \
+            "$USER@$HOST" \
+            "bash -lc 'export PATH=\$HOME/.local/bin:\$HOME/.local/share/mise/shims:\$PATH; cd $remote_dir && ./update.sh'"
