@@ -177,3 +177,10 @@ The current [`.github/workflows/ci.yml`](.github/workflows/ci.yml) does **not** 
 System tests and GitHub signoff are present as commented examples in `config/ci.rb`. They do not run unless those lines are enabled. GitHub signoff also requires the `gh` CLI and the `basecamp/gh-signoff` extension.
 
 # References
+- Multi select dropdown
+  - https://utilitybend.com/blog
+  - multi-select-dropdown-js
+    - https://codeshack.io/multi-select-dropdown-html-javascript/
+    - https://github.com/codeshackio/multi-select-dropdown-js
+  - https://preline.co/docs/components/advanced-select.html
+  - https://github.com/brianvoe/slim-select
