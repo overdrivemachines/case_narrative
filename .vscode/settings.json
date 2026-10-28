@@ -1,14 +1,18 @@
 {
-  // This is JSON with an ERB suffix, not an HTML+ERB template. Treating it as
-  // ERB activates erbfmt, whose HTML parser replaces this document with empty
-  // output. The project scripts likewise restrict erbfmt to *.html.erb files.
-  "files.associations": {
-    "manifest.json.erb": "json"
-  },
-
-  // Project-specific stylesheets used for Bootstrap-aware CSS class suggestions.
-  "css.styleSheets": ["node_modules/bootstrap/dist/css/bootstrap.css", "node_modules/bootstrap-icons/font/bootstrap-icons.css", "app/assets/stylesheets/**/*.{css,scss}", "app/assets/builds/**/*.css"],
+  // ecmel.vscode-html-css extension settings for CSS and SCSS files
+  "css.styleSheets": [
+    "app/assets/stylesheets/**/*.{css,scss}",
+    "app/assets/builds/**/*.css",
+    "https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css",
+    "https://cdn.boxicons.com/3.0.8/fonts/filled/boxicons-filled.min.css",
+    "https://cdn.boxicons.com/3.0.8/fonts/brands/boxicons-brands.min.css"
+  ],
+  // this extension does not parse Ruby expressions embedded inside ERB HTML attributes.
   "css.autoValidation": "Save",
+
+  "files.associations": {
+    "**/case_narrative.conf": "nginx"
+  },
 
   // Force the VS Code Prettier extension to use this project's configuration.
   // Its HTML override leaves <style> content to Stylelint.
@@ -18,40 +22,17 @@
   "prettier.prettierPath": "./node_modules/prettier",
   "prettier.requireConfig": true,
 
-  // Keep Stylelint paths relative to the workspace so this project can be moved.
-  // The local .pnp.cjs boundary prevents the extension from loading an unrelated
-  // Yarn Plug'n'Play configuration from a parent directory.
+  // Run the workspace-installed module, keeping editor and CLI versions aligned.
+  // Explicitly select the ESM config instead of relying on parent-directory lookup.
   "stylelint.stylelintPath": "./node_modules/stylelint",
-  "stylelint.configFile": "stylelint.config.js",
-  "stylelint.configBasedir": ".",
+  "stylelint.configFile": "./stylelint.config.mjs",
+  "stylelint.validate": ["css", "scss"],
+  "stylelint.lintFiles.glob": "**/*.{css,scss}",
 
-  // Herb 0.10.3 can time out while computing save-time fixes for large HTML
-  // documents. Prettier and Stylelint already own HTML formatting and fixes.
-  "languageServerHerb.linter.enabled": false,
+  // Show Herb diagnostics while keeping automatic template fixes disabled.
+  "languageServerHerb.linter.enabled": true,
   "languageServerHerb.linter.fixOnSave": false,
   "languageServerHerb.trace.server": "off",
-
-  // Herb registers as an HTML code-action provider and incorrectly handles
-  // Stylelint-only save requests. Keep Prettier formatting and Stylelint
-  // diagnostics, but do not request HTML code actions while saving here.
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-      "source.fixAll.stylelint": "never"
-    }
-  },
-
-  // Prettier always expands comma-separated SCSS selectors across lines and
-  // has no option to preserve compact selector lists. Use Stylelint's fixer as
-  // the SCSS formatter so the project's one-line selector policy is stable.
-  "[scss]": {
-    "editor.defaultFormatter": "stylelint.vscode-stylelint",
-    "editor.formatOnSave": true
-    // "editor.codeActionsOnSave": {
-    //   "source.fixAll.stylelint": "never"
-    // }
-  },
 
   // Apply assists before formatting the extension's temporary document. The
   // wrapper also selects the bundled erbfmt with the Ruby pinned in mise.toml.
