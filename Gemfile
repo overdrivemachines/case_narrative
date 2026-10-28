@@ -1,9 +1,9 @@
 source "https://rubygems.org"
 
-gem "rails", "~> 8.1.3", ">= 8.1.3.1"
+gem "rails"
 gem "propshaft" # The modern asset pipeline
-gem "pg", "~> 1.6" # Use postgresql as the database for AR
-gem "puma", ">= 5.0" # Use the Puma web server
+gem "pg" # Use postgresql as the database for AR
+gem "puma" # Use the Puma web server
 gem "jsbundling-rails" # Bundle and transpile JavaScript
 gem "cssbundling-rails" # Bundle and process CSS
 gem "turbo-rails" # Hotwire's SPA-like page accelerator
@@ -18,19 +18,22 @@ gem "solid_cache"
 gem "solid_queue"
 gem "solid_cable"
 
+gem "mission_control-jobs" # Dashboard and Active Job extensions to operate and troubleshoot background jobs
+
 gem "bootsnap", require: false # Reduces boot times through caching; required in config/boot.rb
-gem "kamal", require: false # Deploy this application anywhere as a Docker container
 gem "thruster", require: false # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma
 
 gem "ruby-vips", "~> 2.3" # libvips backend for Active Storage variants
-gem "image_processing", "~> 2.0" # Use Active Storage variants
+gem "image_processing", "~> 2.2" # Use Active Storage variants
 
-gem "auto_strip_attributes", "~> 2.6" # Remove unnecessary whitespaces from ActiveRecord or ActiveModel attributes
+gem "auto_strip_attributes", "~> 3.0" # Remove unnecessary whitespaces from ActiveRecord or ActiveModel attributes
 gem "validate_url" # Validate URLs
+gem "page_title_helper", "~> 10.0" # Internationalized page titles and headings
+
 gem "premailer-rails", "~> 1.12" # Inline email CSS before delivery.
 
 gem "devise" # Authentication
-gem "omniauth", ">= 1.0"
+gem "omniauth"
 
 # gem "devise_invitable" # Invite users (attorney invites defendant)
 # gem "pundit" # Authorization (roles, permissions, access control)
