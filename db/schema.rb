@@ -15,47 +15,47 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_13_193000) do
   enable_extension "pg_catalog.plpgsql"
 
   create_table "courthouses", id: :uuid, default: -> { "uuidv7()" }, force: :cascade do |t|
+    t.string "name", limit: 80, null: false
     t.string "address", limit: 50, null: false
     t.string "city", limit: 30, null: false
-    t.datetime "created_at", null: false
-    t.uuid "created_by_id"
-    t.string "homepage", limit: 200
-    t.string "jurisdiction", limit: 80, null: false
-    t.string "name", limit: 80, null: false
     t.string "state", limit: 2, null: false
+    t.string "jurisdiction", limit: 80, null: false
+    t.string "homepage", limit: 200
+    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "created_by_id"
     t.index "lower((name)::text)", name: "index_courthouses_on_lower_name", unique: true
     t.index ["created_by_id"], name: "index_courthouses_on_created_by_id"
   end
 
   create_table "users", id: :uuid, default: -> { "uuidv7()" }, force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.integer "failed_attempts", default: 0, null: false
+    t.string "unlock_token"
+    t.datetime "locked_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "phone"
     t.string "address_line_1"
     t.string "address_line_2"
     t.string "city"
-    t.datetime "confirmation_sent_at"
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.string "country_code", limit: 2
-    t.datetime "created_at", null: false
-    t.datetime "current_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.integer "failed_attempts", default: 0, null: false
-    t.datetime "last_sign_in_at"
-    t.string "last_sign_in_ip"
-    t.datetime "locked_at"
-    t.string "name"
-    t.string "phone"
-    t.string "postal_code"
-    t.datetime "remember_created_at"
-    t.datetime "reset_password_sent_at"
-    t.string "reset_password_token"
-    t.integer "sign_in_count", default: 0, null: false
     t.string "state"
-    t.string "unconfirmed_email"
-    t.string "unlock_token"
-    t.datetime "updated_at", null: false
+    t.string "postal_code"
+    t.string "country_code", limit: 2
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
