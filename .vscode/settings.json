@@ -36,7 +36,9 @@
   // diagnostics, but do not request HTML code actions while saving here.
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
+    // Preserve Stylelint's required trailing semicolons in inline style
+    // attributes. Prettier removes them whenever it formats HTML.
+    "editor.formatOnSave": false,
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": "never"
     }

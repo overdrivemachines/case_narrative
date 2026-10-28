@@ -4,7 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: :create
   before_action :configure_account_update_params, only: :update
 
-  PROFILE_ATTRIBUTES = %i[name phone address_line_1 address_line_2 city state postal_code country_code].freeze
+  PROFILE_ATTRIBUTES = %i[name phone].freeze
 
   # GET /resource/sign_up
   # def new
