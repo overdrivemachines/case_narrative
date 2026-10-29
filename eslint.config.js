@@ -3,7 +3,8 @@ import globals from "globals";
 
 export default [
   {
-    ignores: ["app/assets/builds/**"],
+    // ignores: ["app/assets/builds/**", "public/assets/**", "vendor/**"],
+    ignores: ["app/assets/builds/**", "public/assets/**"],
   },
   js.configs.recommended,
   {

@@ -1,4 +1,7 @@
 #!/usr/bin/env sh
+set -e
+
+docker compose up -d
 
 if gem list --no-installed --exact --silent foreman; then
   echo "Installing foreman..."

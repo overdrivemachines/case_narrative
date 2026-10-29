@@ -1,15 +1,10 @@
 ---
-name: Feature request
+name: 🚀 🆕 Feature request
 about: Suggest an idea for this project
 title: ''
 labels: enhancement
 assignees: overdrivemachines
-
+type: Feature
 ---
 
-**Describe the feature**
-
-**Model Changes**
-
-**Additional context**
-Add any other context or screenshots about the feature request here.
+# Additional context

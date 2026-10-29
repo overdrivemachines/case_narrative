@@ -4,46 +4,40 @@
   "type": "module",
   "scripts": {
     "build": "bun bun.config.js",
-    "build:css:compile": "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --source-map --load-path=node_modules",
-    "build:css:prefix": "postcss ./app/assets/builds/application.css --use=autoprefixer --output=./app/assets/builds/application.css --map",
-    "build:css": "bun run build:css:compile && bun run build:css:prefix",
-    "watch:css": "sass --watch ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --source-map --load-path=node_modules",
-    "format": "bun run format:frontend && bun run format:erb",
-    "format:frontend": "prettier --write \"**/*.{html,js,json,md,yml,yaml}\" && bun run format:scss && stylelint \"app/assets/stylesheets/**/*.scss\" \"public/**/*.html\" --fix",
-    "format:scss": "node script/format-scss.mjs app/assets/stylesheets",
-    "format:erb": "find app/views -name '*.html.erb' -exec bundle exec erbfmt --assist --write {} + && find app/views -name '*.html.erb' -exec bundle exec erbfmt --write {} +",
-    "format:check": "prettier --check \"**/*.{js,json,md,yml,yaml}\" && node script/format-scss.mjs --check app/assets/stylesheets && stylelint \"app/assets/stylesheets/**/*.scss\" \"public/**/*.html\" && find app/views -name '*.html.erb' -exec bundle exec erbfmt --check {} +",
-    "lint:js": "eslint app/javascript bun.config.js",
-    "lint:css": "stylelint \"app/assets/stylesheets/**/*.scss\" \"public/**/*.html\"",
-    "lint:erb": "find app/views -name '*.html.erb' -exec bundle exec erbfmt --lint {} + && bundle exec erb_lint --lint-all",
-    "lint": "bun run lint:js && bun run lint:css && bun run lint:erb",
-    "check": "bun run format:check && bun run lint"
+    "lint": "eslint .",
+    "lint:css": "stylelint \"app/assets/stylesheets/**/*.{css,scss}\"",
+    "lint:fix": "eslint . --fix && stylelint \"app/assets/stylesheets/**/*.{css,scss}\" --fix",
+    "build:css": "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --source-map --embed-sources --load-path=node_modules --quiet-deps",
+    "watch:css": "sass app/assets/stylesheets/application.bootstrap.scss:app/assets/builds/application.css --style=expanded --load-path=node_modules --source-map --embed-sources --quiet-deps --watch",
+    "clean": "rm -f app/assets/builds/application.js app/assets/builds/application.js.map app/assets/builds/application.css app/assets/builds/application.css.map"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.23",
     "@popperjs/core": "^2.11.8",
-    "autoprefixer": "^10.5.4",
     "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1",
-    "postcss": "^8.5.25",
-    "postcss-cli": "^11.0.1",
-    "sass": "^1.102.0"
+    "moment": "^2.31.0",
+    "nodemon": "^3.1.14",
+    "sass": "^1.105.1"
   },
   "browserslist": [
     "defaults"
   ],
   "devDependencies": {
-    "@awmottaz/prettier-plugin-void-html": "^2.2.1",
+    "@awmottaz/prettier-plugin-void-html": "^2.3.0",
     "@eslint/js": "^10.0.1",
+    "@prettier/plugin-ruby": "^4.0.4",
     "@stylistic/stylelint-config": "^5.0.0",
-    "@stylistic/stylelint-plugin": "^5.2.1",
-    "eslint": "^10.8.0",
-    "globals": "^17.9.0",
-    "postcss-html": "^2.0.0",
-    "postcss-scss": "^4.0.9",
-    "prettier": "^3.9.6",
-    "stylelint": "^17.14.1",
-    "stylelint-config-standard-scss": "^17.0.0"
+    "@stylistic/stylelint-plugin": "^5.3.1",
+    "eslint": "^10.12.0",
+    "globals": "^17.13.0",
+    "prettier": "^3.9.9",
+    "prettier-plugin-erb": "^0.4.0",
+    "stylelint": "^17.16.0",
+    "stylelint-config-clean-order": "^10.0.0",
+    "stylelint-config-standard-scss": "^17.0.0",
+    "stylelint-no-indistinguishable-colors": "^2.3.1",
+    "stylelint-order": "^8.1.1"
   }
 }
