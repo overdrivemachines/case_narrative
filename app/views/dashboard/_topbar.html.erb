@@ -1,0 +1,41 @@
+<%# locals: () %>
+<header class="d-topbar">
+  <div class="d-topbar-context">
+    <button class="d-sidebar-toggle d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#dashboard-sidebar" aria-controls="dashboard-sidebar" aria-label="Open navigation">
+      <i class="bi bi-list" aria-hidden="true"></i>
+    </button>
+    <div>
+      <span class="d-topbar-team">Morgan Legal Team</span>
+      <span class="d-topbar-separator" aria-hidden="true">/</span>
+      <strong>Overview</strong>
+    </div>
+  </div>
+
+  <div class="d-topbar-actions">
+    <div class="dropdown">
+      <button class="d-topbar-avatar" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Open account menu">
+        <span><%= dashboard_initials %></span>
+        <i class="bi bi-chevron-down" aria-hidden="true"></i>
+      </button>
+      <div class="dropdown-menu dropdown-menu-end d-profile-menu">
+        <div class="d-profile-heading">
+          <span class="d-profile-avatar"><%= dashboard_initials %></span>
+          <div>
+            <strong><%= dashboard_display_name %></strong>
+            <small><%= current_user.email %></small>
+          </div>
+        </div>
+        <div class="dropdown-divider"></div>
+        <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
+          <i class="bi bi-person"></i>Profile &amp; account
+        <% end %>
+        <a class="dropdown-item" href="#"><i class="bi bi-people"></i>Team settings</a>
+        <a class="dropdown-item" href="#"><i class="bi bi-life-preserver"></i>Help center</a>
+        <div class="dropdown-divider"></div>
+        <%= button_to destroy_user_session_path, method: :delete, class: "dropdown-item text-danger" do %>
+          <i class="bi bi-box-arrow-right"></i>Sign out
+        <% end %>
+      </div>
+    </div>
+  </div>
+</header>

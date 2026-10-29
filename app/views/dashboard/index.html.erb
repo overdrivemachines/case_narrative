@@ -1,0 +1,140 @@
+<% content_for :title, "Dashboard · Case Narrative" %>
+
+<section class="d-dashboard-heading" aria-labelledby="dashboard-heading">
+  <div>
+    <p class="d-eyebrow"><%= Time.current.strftime("%A, %B %-d") %></p>
+    <h1 id="dashboard-heading">Welcome back, <span><%= dashboard_first_name %>.</span></h1>
+    <p>Here's what's happening across Morgan Legal Team.</p>
+  </div>
+  <div class="d-heading-actions">
+    <a class="btn btn-outline-light" href="#"><i class="bi bi-upload" aria-hidden="true"></i>Add evidence</a>
+    <a class="btn btn-dashboard-primary" href="#"><i class="bi bi-plus-lg" aria-hidden="true"></i>New case</a>
+  </div>
+</section>
+
+<section class="d-metric-grid" aria-label="Workspace summary">
+  <article class="d-metric-card d-metric-card-success">
+    <div class="d-metric-top">
+      <div class="d-metric-identity"><div class="d-metric-icon"><i class="bi bi-briefcase" aria-hidden="true"></i></div><p>Active cases</p></div>
+      <span class="d-metric-trend"><i class="bi bi-arrow-up-right" aria-hidden="true"></i>+1</span>
+    </div>
+    <strong>4</strong>
+    <small><span><i class="bi bi-arrow-up-right" aria-hidden="true"></i>1 new</span> this month</small>
+  </article>
+  <article class="d-metric-card d-metric-card-info">
+    <div class="d-metric-top">
+      <div class="d-metric-identity"><div class="d-metric-icon"><i class="bi bi-paperclip" aria-hidden="true"></i></div><p>Evidence items</p></div>
+      <span class="d-metric-trend"><i class="bi bi-arrow-up-right" aria-hidden="true"></i>+12</span>
+    </div>
+    <strong>128</strong>
+    <small><span><i class="bi bi-arrow-up-right" aria-hidden="true"></i>12 added</span> this week</small>
+  </article>
+  <article class="d-metric-card d-metric-card-purple">
+    <div class="d-metric-top">
+      <div class="d-metric-identity"><div class="d-metric-icon"><i class="bi bi-file-earmark-text" aria-hidden="true"></i></div><p>Case documents</p></div>
+      <span class="d-metric-trend"><i class="bi bi-dash" aria-hidden="true"></i>7 ready</span>
+    </div>
+    <strong>36</strong>
+    <small><span><i class="bi bi-check2" aria-hidden="true"></i>7 ready</span> for review</small>
+  </article>
+  <article class="d-metric-card d-metric-card-attention">
+    <div class="d-metric-top">
+      <div class="d-metric-identity"><div class="d-metric-icon"><i class="bi bi-exclamation-circle" aria-hidden="true"></i></div><p>Needs attention</p></div>
+      <span class="d-metric-trend"><i class="bi bi-clock" aria-hidden="true"></i>7 days</span>
+    </div>
+    <strong>3</strong>
+    <small><span><i class="bi bi-exclamation-circle" aria-hidden="true"></i>3 deadlines</span> coming up</small>
+  </article>
+</section>
+
+<div class="row g-4">
+  <div class="col-12 col-xxl-8">
+    <section class="d-panel d-cases-panel" aria-labelledby="cases-heading">
+      <div class="d-panel-heading">
+        <div><p class="d-eyebrow">Your matters</p><h2 id="cases-heading">Cases at a glance</h2></div>
+        <a href="#">View all cases <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table d-cases-table align-middle mb-0">
+          <thead><tr><th scope="col">Case</th><th scope="col">Stage</th><th scope="col">Next milestone</th><th scope="col">Team</th><th scope="col"><span class="visually-hidden">Actions</span></th></tr></thead>
+          <tbody>
+            <tr>
+              <td><a class="d-case-name" href="#">Morgan v. Northstar</a><span class="d-case-number">CV-2026-0148 · Civil</span></td>
+              <td><span class="badge d-status-badge d-status-discovery">Discovery</span></td>
+              <td><strong>Aug 18</strong><span>Responses due</span></td>
+              <td><div class="d-avatar-stack" aria-label="Assigned to 3 team members"><span>DC</span><span>AR</span><span>+1</span></div></td>
+              <td><a class="d-row-action" href="#" aria-label="Open Morgan v. Northstar"><i class="bi bi-arrow-right"></i></a></td>
+            </tr>
+            <tr>
+              <td><a class="d-case-name" href="#">Santos Employment Matter</a><span class="d-case-number">EMP-2026-0083 · Employment</span></td>
+              <td><span class="badge d-status-badge d-status-review">Review</span></td>
+              <td><strong>Aug 21</strong><span>Client meeting</span></td>
+              <td><div class="d-avatar-stack" aria-label="Assigned to 2 team members"><span><%= dashboard_initials %></span><span>AR</span></div></td>
+              <td><a class="d-row-action" href="#" aria-label="Open Santos Employment Matter"><i class="bi bi-arrow-right"></i></a></td>
+            </tr>
+            <tr>
+              <td><a class="d-case-name" href="#">Estate of William Reed</a><span class="d-case-number">PR-2026-0031 · Probate</span></td>
+              <td><span class="badge d-status-badge d-status-drafting">Drafting</span></td>
+              <td><strong>Aug 29</strong><span>Petition draft</span></td>
+              <td><div class="d-avatar-stack" aria-label="Assigned to 1 team member"><span>DC</span></div></td>
+              <td><a class="d-row-action" href="#" aria-label="Open Estate of William Reed"><i class="bi bi-arrow-right"></i></a></td>
+            </tr>
+            <tr>
+              <td><a class="d-case-name" href="#">Brighton Contract Review</a><span class="d-case-number">COM-2026-0067 · Commercial</span></td>
+              <td><span class="badge d-status-badge d-status-ready">Ready</span></td>
+              <td><strong>Sep 02</strong><span>Final approval</span></td>
+              <td><div class="d-avatar-stack" aria-label="Assigned to 2 team members"><span><%= dashboard_initials %></span><span>LT</span></div></td>
+              <td><a class="d-row-action" href="#" aria-label="Open Brighton Contract Review"><i class="bi bi-arrow-right"></i></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <div class="col-12 col-xxl-4">
+    <section class="d-panel d-team-panel" aria-labelledby="team-heading">
+      <div class="d-panel-heading">
+        <div><p class="d-eyebrow">Workspace</p><h2 id="team-heading">Morgan Legal Team</h2></div>
+        <a href="#" aria-label="Team settings"><i class="bi bi-gear"></i></a>
+      </div>
+      <p class="d-team-panel-copy">Your cases, evidence, documents, and activity live in this shared team workspace.</p>
+      <div class="d-team-member-row">
+        <div class="d-avatar-stack d-avatar-stack-large" aria-label="4 team members"><span><%= dashboard_initials %></span><span>DC</span><span>AR</span><span>LT</span></div>
+        <a href="#"><i class="bi bi-person-plus"></i> Invite member</a>
+      </div>
+      <div class="d-team-meta">
+        <div><i class="bi bi-people"></i><span><strong>4</strong> members</span></div>
+        <div><i class="bi bi-briefcase"></i><span><strong>4</strong> active cases</span></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="col-12 col-xl-7">
+    <section class="d-panel" aria-labelledby="activity-heading">
+      <div class="d-panel-heading">
+        <div><p class="d-eyebrow">Latest updates</p><h2 id="activity-heading">Recent activity</h2></div>
+        <a href="#">View activity</a>
+      </div>
+      <ol class="d-activity-list">
+        <li><span class="d-activity-icon"><i class="bi bi-file-earmark-arrow-up"></i></span><div><p><strong>Alex Rivera</strong> uploaded 4 evidence files to <a href="#">Morgan v. Northstar</a>.</p><time datetime="2026-08-13T10:32:00-05:00">32 minutes ago</time></div></li>
+        <li><span class="d-activity-icon"><i class="bi bi-stars"></i></span><div><p><strong><%= dashboard_display_name %></strong> generated a document summary for <a href="#">Santos Employment Matter</a>.</p><time datetime="2026-08-13T08:42:00-05:00">2 hours ago</time></div></li>
+        <li><span class="d-activity-icon"><i class="bi bi-check2-circle"></i></span><div><p><strong>Dana Cole</strong> marked “Review written notice” complete.</p><time datetime="2026-08-12T16:00:00-05:00">Yesterday at 4:00 PM</time></div></li>
+      </ol>
+    </section>
+  </div>
+
+  <div class="col-12 col-xl-5">
+    <section class="d-panel d-ai-panel" aria-labelledby="ai-heading">
+      <div class="d-ai-mark"><i class="bi bi-stars" aria-hidden="true"></i></div>
+      <p class="d-eyebrow">Case Narrative AI</p>
+      <h2 id="ai-heading">Move the record forward.</h2>
+      <p>Summarize new evidence, surface timeline gaps, or turn your case notes into a first draft.</p>
+      <div class="d-ai-actions">
+        <a class="btn btn-light" href="#">Open AI workspace <i class="bi bi-arrow-up-right"></i></a>
+        <a href="#">See suggested next steps</a>
+      </div>
+    </section>
+  </div>
+</div>

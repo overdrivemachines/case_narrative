@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%= render "layouts/document_head", default_title: "Dashboard · Case Narrative" %>
+  </head>
+
+  <body class="dashboard-page" data-bs-theme="dark">
+    <div class="dashboard-shell">
+      <%= render "dashboard/sidebar" %>
+
+      <div class="dashboard-main">
+        <%= render "dashboard/topbar" %>
+
+        <main class="dashboard-content">
+          <%= yield %>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

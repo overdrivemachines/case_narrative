@@ -1,0 +1,65 @@
+<%# locals: () %>
+<aside id="dashboard-sidebar" class="offcanvas-lg offcanvas-start d-sidebar" tabindex="-1" aria-labelledby="dashboard-sidebar-label">
+  <div class="d-sidebar-brand">
+    <%= link_to dashboard_path, class: "d-brand", id: "dashboard-sidebar-label" do %>
+      <%= image_tag "home/logo.png", width: 34, height: 32, alt: "" %>
+      <span>Case Narrative</span>
+    <% end %>
+    <button class="btn-close d-lg-none" type="button" data-bs-dismiss="offcanvas" data-bs-target="#dashboard-sidebar" aria-label="Close navigation"></button>
+  </div>
+
+  <%# This static team switcher reserves the workspace location for the future Team model. %>
+  <div class="dropdown d-team-switcher">
+    <button class="d-team-button" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <span class="d-team-avatar">ML</span>
+      <span class="d-team-copy">
+        <small>Your team</small>
+        <strong>Morgan Legal Team</strong>
+      </span>
+      <i class="bi bi-chevron-expand" aria-hidden="true"></i>
+    </button>
+    <ul class="dropdown-menu d-team-menu">
+      <li><h6 class="dropdown-header">Teams</h6></li>
+      <li><a class="dropdown-item active" href="#"><span class="d-team-menu-avatar">ML</span>Morgan Legal Team</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i>Team settings</a></li>
+    </ul>
+  </div>
+
+  <nav class="d-sidebar-nav" aria-label="Dashboard navigation">
+    <div class="d-nav-section">
+      <p class="d-nav-label">Workspace</p>
+      <%= link_to dashboard_path, class: "d-nav-link active", aria: { current: "page" } do %>
+        <i class="bi bi-grid-1x2" aria-hidden="true"></i><span>Overview</span>
+      <% end %>
+      <a class="d-nav-link" href="#"><i class="bi bi-briefcase" aria-hidden="true"></i><span>Cases</span><span class="d-nav-count">4</span></a>
+      <a class="d-nav-link" href="#"><i class="bi bi-clock-history" aria-hidden="true"></i><span>Timeline</span></a>
+      <a class="d-nav-link" href="#"><i class="bi bi-paperclip" aria-hidden="true"></i><span>Evidence</span></a>
+      <a class="d-nav-link" href="#"><i class="bi bi-file-earmark-text" aria-hidden="true"></i><span>Documents</span></a>
+    </div>
+
+    <div class="d-nav-section">
+      <p class="d-nav-label">Intelligence</p>
+      <a class="d-nav-link" href="#"><i class="bi bi-stars" aria-hidden="true"></i><span>AI workspace</span><span class="d-nav-pill">Beta</span></a>
+      <a class="d-nav-link" href="#"><i class="bi bi-search" aria-hidden="true"></i><span>Document review</span></a>
+    </div>
+
+    <div class="d-nav-section">
+      <p class="d-nav-label">Team</p>
+      <a class="d-nav-link" href="#"><i class="bi bi-people" aria-hidden="true"></i><span>Members</span></a>
+      <a class="d-nav-link" href="#"><i class="bi bi-activity" aria-hidden="true"></i><span>Activity</span></a>
+    </div>
+  </nav>
+
+  <div class="d-sidebar-footer">
+    <a class="d-nav-link" href="#"><i class="bi bi-question-circle" aria-hidden="true"></i><span>Help &amp; resources</span></a>
+    <div class="d-storage">
+      <div class="d-flex align-items-center justify-content-between">
+        <span>Workspace storage</span><span>1.8 / 10 GB</span>
+      </div>
+      <div class="progress" role="progressbar" aria-label="Workspace storage used" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" style="width: 18%"></div>
+      </div>
+    </div>
+  </div>
+</aside>
