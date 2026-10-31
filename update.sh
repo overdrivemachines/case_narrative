@@ -6,9 +6,6 @@ APP_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/code" && pwd)"
 cd "$APP_DIR"
 
 export RAILS_ENV=production
-export BUNDLE_WITHOUT=development:test
-export BUNDLE_DEPLOYMENT=true
-export BUNDLE_PATH="$APP_DIR/vendor/bundle"
 
 echo "==> Updating case_narrative from origin/main"
 git fetch origin main
@@ -19,6 +16,8 @@ mise self-update
 
 echo "==> Installing project tool versions and Ruby gems"
 mise install
+mise exec -- bundle config set --local deployment true
+mise exec -- bundle config set --local without 'development test'
 mise exec -- bundle install
 
 echo "==> Installing JavaScript dependencies"
