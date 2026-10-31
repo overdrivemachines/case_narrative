@@ -12,7 +12,7 @@ git fetch origin main
 git reset --hard FETCH_HEAD
 
 echo "==> Updating mise"
-mise self-update
+mise self-update --yes
 
 echo "==> Installing project tool versions and Ruby gems"
 mise install
