@@ -11,6 +11,31 @@ echo "==> Updating case_narrative from origin/main"
 git fetch origin main
 git reset --hard FETCH_HEAD
 
+echo "==> Updating Nginx site configuration"
+NGINX_SITE=/etc/nginx/sites-enabled/case_narrative.conf
+# Keep a temporary backup beside the live config. Its name starts with
+# .case_narrative.conf.backup. and gets a random suffix; remove it after a
+# successful reload, or restore it if validation or reload fails.
+NGINX_BACKUP="$(sudo -n mktemp /etc/nginx/sites-enabled/.case_narrative.conf.backup.XXXXXX)"
+sudo -n cp -p "$NGINX_SITE" "$NGINX_BACKUP"
+sudo -n install -o root -g root -m 0644 "$APP_DIR/case_narrative.conf" "$NGINX_SITE"
+
+if sudo -n nginx -t; then
+  if sudo -n systemctl reload nginx; then
+    sudo -n rm -f "$NGINX_BACKUP"
+  else
+    echo "==> Nginx reload failed; restoring previous site configuration"
+    sudo -n cp -p "$NGINX_BACKUP" "$NGINX_SITE"
+    sudo -n rm -f "$NGINX_BACKUP"
+    exit 1
+  fi
+else
+  echo "==> Nginx configuration is invalid; restoring previous site configuration"
+  sudo -n cp -p "$NGINX_BACKUP" "$NGINX_SITE"
+  sudo -n rm -f "$NGINX_BACKUP"
+  exit 1
+fi
+
 echo "==> Updating mise"
 mise self-update --yes
 
