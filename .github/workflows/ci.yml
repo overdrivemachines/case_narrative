@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7.0.1
+        uses: actions/checkout@v7
 
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1.327.0
+        uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
 
@@ -30,22 +30,31 @@ jobs:
       RUBOCOP_CACHE_ROOT: tmp/rubocop
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7.0.1
+        uses: actions/checkout@v7
 
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1.327.0
+        uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
 
-      - uses: oven-sh/setup-bun@v2.2.0
+      - uses: oven-sh/setup-bun@v2
         with:
-          bun-version: 1.4.2
+          bun-version: 1.4.4
+
+      - name: Check Bun version matches mise.toml
+        run: |
+          expected_bun="$(ruby -e 'version = File.read("mise.toml")[/^\s*bun\s*=\s*"([^"]+)"/, 1]; abort "Bun version is missing from mise.toml" unless version; print version')"
+          actual_bun="$(bun --version)"
+          if [[ "$actual_bun" != "$expected_bun" ]]; then
+            echo "Bun version mismatch: mise.toml specifies $expected_bun, CI installed $actual_bun"
+            exit 1
+          fi
 
       - name: Install JavaScript dependencies
         run: bun install --frozen-lockfile
 
       - name: Prepare RuboCop cache
-        uses: actions/cache@v6.1.0
+        uses: actions/cache@v6
         env:
           DEPENDENCIES_HASH: ${{ hashFiles('mise.toml', '**/.rubocop.yml', '**/.rubocop_todo.yml', 'Gemfile.lock') }}
         with:

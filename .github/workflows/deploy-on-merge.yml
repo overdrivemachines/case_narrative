@@ -1,3 +1,16 @@
+# Configure these under GitHub repository Settings > Secrets and variables > Actions.
+# Repository variables:
+#   DEPLOY_KNOWN_HOSTS: verified known_hosts entry for DEPLOY_HOST. For a
+#     nonstandard port, use the [host]:port format. Verify the host key
+#     fingerprint through a trusted channel before saving it here.
+# Repository secrets:
+#   DEPLOY_HOST: 77.93.154.215
+#   DEPLOY_USER: deploy
+#   DEPLOY_PORT: 22
+#   SSH_PRIVATE_KEY: private key whose public key is authorized for DEPLOY_USER (contents of ~/.ssh/id_ed25519)
+# The remote directory is /var/www/<GitHub repository name>; create that
+# directory on the VPS and keep the repository name in sync with it.
+
 name: Deploy on Merge to Main
 
 on:
@@ -9,6 +22,9 @@ concurrency:
   group: deploy-production
   cancel-in-progress: false
 
+permissions:
+  contents: read
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -17,28 +33,28 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7.0.1
+        uses: actions/checkout@v7
 
       - name: Validate required secrets
         env:
           HOST: ${{ secrets.DEPLOY_HOST }}
           USER: ${{ secrets.DEPLOY_USER }}
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          KNOWN_HOSTS: ${{ vars.DEPLOY_KNOWN_HOSTS }}
         run: |
           set -euo pipefail
           test -n "$HOST" || { echo "DEPLOY_HOST is missing"; exit 1; }
           test -n "$USER" || { echo "DEPLOY_USER is missing"; exit 1; }
           test -n "$SSH_PRIVATE_KEY" || { echo "SSH_PRIVATE_KEY is missing"; exit 1; }
+          test -n "$KNOWN_HOSTS" || { echo "DEPLOY_KNOWN_HOSTS is missing"; exit 1; }
 
-      - name: Configure known_hosts
+      - name: Configure verified SSH host key
         env:
-          HOST: ${{ secrets.DEPLOY_HOST }}
-          PORT: ${{ secrets.DEPLOY_PORT }}
+          KNOWN_HOSTS: ${{ vars.DEPLOY_KNOWN_HOSTS }}
         run: |
           set -euo pipefail
           mkdir -p ~/.ssh
-          port="${PORT:-22}"
-          ssh-keyscan -p "$port" "$HOST" >> ~/.ssh/known_hosts
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
           chmod 600 ~/.ssh/known_hosts
 
       - name: Start SSH agent and add key
