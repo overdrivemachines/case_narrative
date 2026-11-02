@@ -23,14 +23,14 @@ gem "mission_control-jobs" # Dashboard and Active Job extensions to operate and 
 gem "bootsnap", require: false # Reduces boot times through caching; required in config/boot.rb
 gem "thruster", require: false # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma
 
-gem "ruby-vips", "~> 2.3" # libvips backend for Active Storage variants
-gem "image_processing", "~> 2.2" # Use Active Storage variants
+gem "ruby-vips" # libvips backend for Active Storage variants
+gem "image_processing" # Use Active Storage variants
 
-gem "auto_strip_attributes", "~> 3.0" # Remove unnecessary whitespaces from ActiveRecord or ActiveModel attributes
+gem "auto_strip_attributes" # Remove unnecessary whitespaces from ActiveRecord or ActiveModel attributes
 gem "validate_url" # Validate URLs
-gem "page_title_helper", "~> 10.0" # Internationalized page titles and headings
+gem "page_title_helper" # Internationalized page titles and headings
 
-gem "premailer-rails", "~> 1.12" # Inline email CSS before delivery.
+gem "premailer-rails" # Inline email CSS before delivery.
 
 gem "devise" # Authentication
 gem "omniauth"
@@ -57,7 +57,7 @@ group :development, :test do
 end
 
 group :development do
-  gem "erbfmt", "0.3.1", require: false # Format HTML+ERB templates
+  gem "erbfmt", require: false # Format HTML+ERB templates
   gem "web-console" # Use console on exceptions pages
   gem "chrome_devtools_rails" # Expose Chrome DevTools workspace mapping metadata in development.
   gem "letter_opener" # Preview email in the browser instead of sending it
