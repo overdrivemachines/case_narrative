@@ -3,6 +3,7 @@ class DashboardController < ApplicationController
 
   layout "dashboard"
 
+  # @route GET /dashboard (dashboard)
   def index
   end
 end
