@@ -4,6 +4,8 @@
 
 CaseNarrative is a timeline-based application that helps defendants and attorneys document, organize, and understand events in a legal case. It presents a chronological narrative with supporting exhibits, allowing users to clearly reconstruct what happened and build a structured, evidence-backed case.
 
+Product scope and phased development roadmap: [Case Narrative product plan](docs/product-plan.md). This plan supersedes the older TODO list below.
+
 ![Preview](preview.png)
 
 Live - https://casenarrative.com
