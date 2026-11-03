@@ -24,6 +24,8 @@
 #                                          POST   /users/unlock(.:format)                                                                           users/unlocks#create
 #                       rails_health_check GET    /up(.:format)                                                                                     rails/health#show
 #                             pwa_manifest GET    /manifest(.:format)                                                                               rails/pwa#manifest
+#                                    cases GET    /cases(.:format)                                                                                  cases#index
+#                                     case GET    /cases/:id(.:format)                                                                              cases#show
 #                                     root GET    /                                                                                                 home#index
 #         turbo_recede_historical_location GET    /recede_historical_location(.:format)                                                             turbo/native/navigation#recede
 #         turbo_resume_historical_location GET    /resume_historical_location(.:format)                                                             turbo/native/navigation#resume

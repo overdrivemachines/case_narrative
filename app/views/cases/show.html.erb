@@ -1,13 +1,13 @@
-<% content_for :title, "#{@case_details[:title]} · Case Narrative" %>
+<% content_for :title, "#{@case_record.title} · Case Narrative" %>
 
 <%= link_to cases_path, class: "cases-back-link" do %><i class="fa-solid fa-arrow-left" aria-hidden="true"></i>My Cases<% end %>
 <section class="cases-heading" aria-labelledby="case-heading">
-  <div><p class="ch-eyebrow">Case overview · Sample</p><h1 id="case-heading"><%= @case_details[:title] %></h1><p>Case No. <%= @case_details[:number] %> · <%= @case_details[:county] %></p></div>
-  <span class="cr-status"><%= @case_details[:status] %></span>
+  <div><p class="ch-eyebrow">Case overview · Sample</p><h1 id="case-heading"><%= @case_record.title %></h1><p>Case No. <%= @case_record.case_number %> · <%= @case_record.county %></p></div>
+  <span class="cr-status"><%= @case_record.status %></span>
 </section>
 <section class="case-overview" aria-labelledby="overview-heading">
   <h2 id="overview-heading">Your account starts here.</h2>
-  <p><%= @case_details[:description] %></p>
+  <p><%= @case_record.description %></p>
   <p class="co-preview-note">This is a sample case preview. Writing, uploads, and saved events will be connected in a later step.</p>
   <div class="co-sections">
     <article><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i><h3>Narratives</h3><p>Write what happened in your own words.</p></article>

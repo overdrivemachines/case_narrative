@@ -13,9 +13,9 @@
 <%# Submits a search query to cases_path while keeping the list server rendered. %>
 <%# GET /cases?q=search-text. %>
 <%= form_with url: cases_path, method: :get, class: "cases-search", role: "search" do |form| %>
-  <%= form.label :q, "Search cases by participant, case number, or county", class: "visually-hidden" %>
+  <%= form.label :q, "Search cases by name, case number, type, or county", class: "visually-hidden" %>
   <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-  <%= form.search_field :q, value: @query, placeholder: "Search cases by participant, case number, or county…", maxlength: 200 %>
+  <%= form.search_field :q, value: @query, placeholder: "Search cases by name, number, type, or county…", maxlength: 200 %>
   <%= form.submit "Search", class: "btn btn-surface-outline" %>
 <% end %>
 

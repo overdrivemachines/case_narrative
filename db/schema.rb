@@ -10,9 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_03_020906) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_03_225747) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "cases", id: :uuid, default: -> { "uuidv7()" }, force: :cascade do |t|
+    t.string "title", limit: 180, null: false
+    t.string "case_number", limit: 100, null: false
+    t.string "case_type", limit: 32, null: false
+    t.string "county", limit: 120, null: false
+    t.date "filed_on", null: false
+    t.string "status", limit: 32, null: false
+    t.text "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index "lower((case_number)::text)", name: "index_cases_on_lower_case_number", unique: true
+  end
 
   create_table "users", id: :uuid, default: -> { "uuidv7()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
