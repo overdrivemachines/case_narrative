@@ -24,7 +24,6 @@
 #                                          POST   /users/unlock(.:format)                                                                           users/unlocks#create
 #                       rails_health_check GET    /up(.:format)                                                                                     rails/health#show
 #                             pwa_manifest GET    /manifest(.:format)                                                                               rails/pwa#manifest
-#                                dashboard GET    /dashboard(.:format)                                                                              dashboard#index
 #                                     root GET    /                                                                                                 home#index
 #         turbo_recede_historical_location GET    /recede_historical_location(.:format)                                                             turbo/native/navigation#recede
 #         turbo_resume_historical_location GET    /resume_historical_location(.:format)                                                             turbo/native/navigation#resume
@@ -50,7 +49,7 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  get "dashboard", to: "dashboard#index", as: :dashboard
+  resources :cases, only: %i[index show]
 
   root "home#index"
 end
