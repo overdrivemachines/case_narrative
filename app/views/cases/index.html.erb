@@ -1,0 +1,43 @@
+<% content_for :title, "My Cases · Case Narrative" %>
+
+<section class="cases-heading" aria-labelledby="cases-heading">
+  <div>
+    <p class="ch-eyebrow">Cases</p>
+    <h1 id="cases-heading">My Cases</h1>
+    <p>Manage your cases, narratives, evidence, and timelines in one place.</p>
+  </div>
+  <%# Open the case-creation preview; persistence will be implemented later. %>
+  <button class="btn btn-orisa-primary" type="button" data-bs-toggle="modal" data-bs-target="#create-case-preview"><i class="fa-solid fa-plus" aria-hidden="true"></i>Create New Case</button>
+</section>
+
+<%# Submits a search query to cases_path while keeping the list server rendered. %>
+<%# GET /cases?q=search-text. %>
+<%= form_with url: cases_path, method: :get, class: "cases-search", role: "search" do |form| %>
+  <%= form.label :q, "Search cases by participant, case number, or county", class: "visually-hidden" %>
+  <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+  <%= form.search_field :q, value: @query, placeholder: "Search cases by participant, case number, or county…", maxlength: 200 %>
+  <%= form.submit "Search", class: "btn btn-surface-outline" %>
+<% end %>
+
+<div class="cases-list-meta"><p><%= pluralize(@cases.length, "case") %><%= " matching your search" if @query.present? %></p><span><i class="fa-solid fa-circle-info" aria-hidden="true"></i>Sample cases · Preview</span></div>
+
+<section class="cases-list" aria-label="Your cases">
+  <div class="cl-columns" aria-hidden="true"><span>Case / Participants</span><span>Case type</span><span>County</span><span>Date filed</span><span>Status</span><span></span></div>
+  <%# Each sample case is a single keyboard-accessible link to its show page. %>
+  <%= render partial: "cases/case", collection: @cases, as: :case_record %>
+  <% if @cases.empty? %>
+    <div class="cl-empty"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+      <h2>No matching cases</h2><p>Try a different participant, case number, or county.</p>
+      <%= link_to(
+        "Show all cases",
+        cases_path,
+        class: "btn btn-surface-outline"
+      ) %>
+    </div>
+  <% end %>
+</section>
+
+<footer class="cases-footer"><p><i class="fa-solid fa-lock" aria-hidden="true"></i>Your account. Your story. One place for the details.</p><span>Start with what you remember.</span></footer>
+
+<%# Simple placeholder destinations keep later workflows out of this index. %>
+<%= render "cases/preview_dialogs" %>

@@ -1,0 +1,17 @@
+// Palette copied from vendor/themes/orisa/assets/css/main.css dark tokens.
+// Orisa intentionally uses closely spaced charcoal surfaces.
+/* stylelint-disable plugin/stylelint-no-indistinguishable-colors */
+:root {
+  --orange-primary: #f0460e;
+  --orange-hover: #ff5c27;
+  --orange-soft-background: #25201e;
+  --gray-page-background: #0c0c0c;
+  --gray-panel-background: #141414;
+  --gray-raised-background: #212121;
+  --gray-border: #2d2d2d;
+  --gray-muted-text: #b3b3b3;
+  --gray-light-text: #f4f4f4;
+  --gray-glass-background: rgb(20 20 20 / 85%);
+  --orange-muted-background: color-mix(in srgb, var(--orange-primary) 12%, var(--gray-panel-background));
+}
+/* stylelint-enable plugin/stylelint-no-indistinguishable-colors */

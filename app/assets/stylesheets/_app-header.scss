@@ -1,0 +1,168 @@
+////////////////////////////////////////////////////////////////////////////////
+// Shared application header
+////////////////////////////////////////////////////////////////////////////////
+
+// layouts/_app_header.html.erb
+header.app-header {
+  // Stay anchored to the viewport, independent of any page's sidebar or width.
+  position: sticky;
+  z-index: 1020;
+  top: 0;
+
+  // Keep the main navigation centered independently of the brand and account.
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+
+  min-height: 80px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--gray-border);
+
+  background: var(--gray-page-background);
+
+  .ah-brand {
+    display: inline-flex;
+    gap: 12px;
+    align-items: center;
+    justify-self: start;
+
+    font-size: 23px;
+    font-weight: 700;
+    color: var(--gray-light-text);
+    letter-spacing: -0.8px;
+  }
+
+  .ah-brand img {
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+
+  .ah-nav {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .ah-nav-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 46px;
+    padding: 10px 25px;
+    border-radius: 50px;
+
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--gray-light-text);
+
+    transition: background-color 180ms ease;
+  }
+
+  .ah-nav-link:hover {
+    background: var(--gray-raised-background);
+  }
+
+  .ah-nav-link[aria-current="page"] {
+    color: var(--orange-primary);
+    background: var(--gray-raised-background);
+  }
+
+  .ah-account {
+    justify-self: end;
+    min-width: 0;
+  }
+
+  .ah-account-button {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+
+    min-height: 46px;
+    padding: 0;
+    border: 0;
+
+    color: var(--gray-light-text);
+
+    background: transparent;
+  }
+
+  .ah-account-button > span {
+    display: grid;
+    place-items: center;
+
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    background: var(--orange-primary);
+  }
+
+  .ah-account-menu {
+    width: min(300px, calc(100vw - 32px));
+    padding: 10px;
+    border-color: var(--gray-border);
+    border-radius: 14px;
+
+    background: var(--gray-panel-background);
+  }
+
+  .ah-account-name {
+    margin: 0;
+    padding: 10px 15px;
+
+    font-size: 15px;
+    color: var(--gray-muted-text);
+    overflow-wrap: anywhere;
+  }
+
+  .dropdown-item {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+
+    min-height: 46px;
+    border-radius: 8px;
+  }
+}
+
+@media (width < 768px) {
+  header.app-header {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 16px;
+    padding: 14px 16px 10px;
+
+    .ah-brand {
+      font-size: 20px;
+    }
+
+    .ah-brand img {
+      width: 36px;
+      height: 36px;
+    }
+
+    .ah-nav {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    .ah-account {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .ah-account-button {
+      gap: 8px;
+    }
+
+    .ah-account-button > .fa-solid {
+      display: none;
+    }
+  }
+}

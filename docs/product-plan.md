@@ -16,7 +16,7 @@ Authentication and the Rails stack already exist, but the checked-in schema curr
 
 **Highest priority:** let an individual write an account, attach supporting material, and reliably return to their work.
 
-- Create private cases and connect the dashboard to real case data.
+- Create private cases and connect the case pages to real case data.
 - Create, edit, save, and delete narratives; support multiple narratives per case.
 - Provide a simple rich text toolbar for bold, italic, underline, and selected text at 1.3× the normal font size.
 - Insert images directly into narratives.
