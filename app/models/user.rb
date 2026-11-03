@@ -23,6 +23,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  role                   :integer          default("unapproved"), not null
 #  sign_in_count          :integer          default(0), not null
 #  state                  :string
 #  unconfirmed_email      :string
@@ -39,6 +40,8 @@ class User < ApplicationRecord
          :confirmable, :lockable, :timeoutable, :trackable, :omniauthable
 
   auto_strip_attributes :name, :phone
+
+  enum :role, %i[unapproved standard admin]
 
   validates :name,
             presence: true,
