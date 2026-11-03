@@ -1,0 +1,28 @@
+<%# locals: () %>
+<%# Brand, personal case navigation, and the working account menu. %>
+<%# Called once by layouts/application.html.erb, before app page content. %>
+<header class="app-header">
+  <%= link_to cases_path, class: "ah-brand" do %>
+    <%= image_tag "home/logo.png", width: 46, height: 44, alt: "" %>
+    <span>Case Narrative</span>
+  <% end %>
+  <nav class="ah-nav" aria-label="Main navigation">
+    <%= link_to "My Cases", cases_path, class: "ah-nav-link", aria: { current: "page" } %>
+    <a class="ah-nav-link" href="#timeline-preview">Timeline</a>
+  </nav>
+  <div class="dropdown ah-account">
+    <%# Toggle the Bootstrap account dropdown. %>
+    <button class="ah-account-button" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Open account menu">
+      <span><%= (current_user.name.presence || current_user.email).split.filter_map(&:first).first(2).join.upcase %></span>
+      <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+    </button>
+    <div class="dropdown-menu dropdown-menu-end ah-account-menu">
+      <p class="ah-account-name"><%= current_user.name.presence || current_user.email %></p>
+      <%= link_to edit_user_registration_path, class: "dropdown-item" do %><i class="fa-solid fa-user" aria-hidden="true"></i>Account settings<% end %>
+      <div class="dropdown-divider"></div>
+      <%# Submits to destroy_user_session_path to end the current session. %>
+      <%# DELETE /users/sign_out. %>
+      <%= button_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>Sign out<% end %>
+    </div>
+  </div>
+</header>

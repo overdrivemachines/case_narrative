@@ -1,0 +1,13 @@
+<%# locals: () %>
+<%# Case creation preview and a timeline placeholder for the index navigation. %>
+<%# Called once by cases/index.html.erb. %>
+<div class="modal fade cases-preview-modal" id="create-case-preview" tabindex="-1" aria-labelledby="create-case-title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header"><h2 class="modal-title fs-4" id="create-case-title">A place for your next case</h2><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body"><p>You'll be able to give your case a name, write narratives, and collect supporting material here.</p><p>Case creation will be connected in a later step. For now, open a sample case to explore the layout.</p></div>
+      <div class="modal-footer"><button class="btn btn-orisa-primary" type="button" data-bs-dismiss="modal">Back to my cases</button></div>
+    </div>
+  </div>
+</div>
+<section id="timeline-preview" class="cases-timeline-note" aria-labelledby="timeline-note-heading"><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i><div><h2 id="timeline-note-heading">One timeline for each case</h2><p>Open a case to find its timeline. Events will be connected when the timeline workflow is built.</p></div></section>

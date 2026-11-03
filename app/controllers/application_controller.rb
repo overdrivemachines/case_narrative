@@ -4,8 +4,10 @@ class ApplicationController < ActionController::Base
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
 
+  # Returns the saved destination or the personal case list after sign-in.
+  # Called by Devise after successful authentication.
   def after_sign_in_path_for(resource)
-    stored_location_for(resource) || dashboard_path
+    stored_location_for(resource) || cases_path
   end
 
   private

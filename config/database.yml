@@ -5,6 +5,8 @@ default: &default
 
 development:
   <<: *default
+  # Local development PostgreSQL runs in the `postgres` service in compose.yaml.
+  # Connect through the published host port (5432 by default).
   database: case_narrative_development
   host: localhost
   port: 5432
@@ -20,9 +22,13 @@ test:
   password: <%= Rails.application.credentials.dig(:database, :test, :password) %>
 
 production:
-  # PostgreSQL role used by this app is separate from the Linux `deploy` account and
-  # should not be shared with other apps or replaced with the `postgres` superuser.
-  # Dedicated role `case_narrative` is the owner of this app's production databases.
+  # Production uses PostgreSQL installed on the VPS (not the development Docker
+  # container). The PostgreSQL login role is `case_narrative`, separate from the
+  # Linux `deploy` account. It owns these databases:
+  #   primary: case_narrative_production
+  #   cache:   case_narrative_production_cache
+  #   queue:   case_narrative_production_queue
+  #   cable:   case_narrative_production_cable
   primary: &primary_production
     <<: *default
     database: case_narrative_production

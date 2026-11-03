@@ -1,0 +1,17 @@
+<%# locals: (case_record:) %>
+<%# A linked case summary with filing details and status. %>
+<%# Called in a collection by cases/index.html.erb; stacks at narrow widths. %>
+<%= link_to case_path(case_record), class: "case-row" do %>
+  <div class="cr-identity"><i class="fa-solid fa-folder-open" aria-hidden="true"></i><div><h2><%= case_record.title %></h2><p>Case No. <%= case_record.case_number %></p></div></div>
+  <div class="cr-detail"><span class="cr-label">Case type</span><span class="cr-type"><%= case_record.case_type %></span></div>
+  <div class="cr-detail"><span class="cr-label">County</span><span><%= case_record.county %></span></div>
+  <div class="cr-detail"><span class="cr-label">Date filed</span><span class="cr-date"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i><%= l(case_record.filed_on, format: :long) %></span></div>
+  <div class="cr-detail"><span class="cr-label">Status</span><%= tag.span(
+    case_record.status,
+    class: [
+      "cr-status",
+      { "cr-status-active": case_record.status == "Active", "cr-status-progress": case_record.status == "In progress" }
+    ]
+  ) %></div>
+  <i class="fa-solid fa-arrow-up-right-from-square cr-arrow" aria-hidden="true"></i>
+<% end %>

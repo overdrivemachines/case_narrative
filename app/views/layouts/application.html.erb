@@ -3,8 +3,13 @@
   <head>
     <%= render "layouts/document_head", default_title: "Case Narrative" %>
   </head>
-
-  <body data-bs-theme="dark">
-    <%= yield %>
+  <body class="app-page" data-bs-theme="dark">
+    <a class="app-skip-link" href="#app-content">Skip to content</a>
+    <%= render "layouts/app_header" %>
+    <main id="app-content" class="app-content">
+      <% if notice.present? %><div class="alert alert-success" role="status"><%= notice %></div><% end %>
+      <% if alert.present? %><div class="alert alert-danger" role="alert"><%= alert %></div><% end %>
+      <%= yield %>
+    </main>
   </body>
 </html>

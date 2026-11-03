@@ -1,8 +1,51 @@
-# README
+# Case Narrative
 
 [![CI](https://github.com/overdrivemachines/case_narrative/actions/workflows/ci.yml/badge.svg)](https://github.com/overdrivemachines/case_narrative/actions/workflows/ci.yml)
 
-CaseNarrative is a timeline-based application that helps defendants and attorneys document, organize, and understand events in a legal case. It presents a chronological narrative with supporting exhibits, allowing users to clearly reconstruct what happened and build a structured, evidence-backed case.
+Case Narrative (casenarrative.com) helps people document events, organize evidence, build chronological timelines, and create clear, structured accounts of their cases. It brings fragmented memories, documents, communications, and supporting material into a coherent account of what happened.
+
+## Who it is for
+
+Case Narrative is primarily for individuals representing themselves or preparing information for attorneys. Examples include legal disputes, workplace incidents, insurance claims, and personal conflicts. After the individual experience is complete and validated, the app will expand to attorneys and law firms.
+
+## Product principles
+
+- **Evidence traceability:** preserve original material and connect important statements and events to their sources.
+- **Factual accuracy:** distinguish allegations, source-supported statements, disputed accounts, uncertainty, and missing information. Supporting evidence does not automatically establish a statement as true.
+- **Simplicity for non-lawyers:** make writing, collecting material, and reconstructing events approachable on desktop and mobile.
+- **Private access:** keep cases and media private, with ownership checks from the MVP onward.
+
+## Development roadmap
+
+The following capabilities are planned work. Authentication and the Rails stack already exist; the checked-in schema currently contains only users.
+
+### Milestone 1 — Narrative Editor & Media Uploads (MVP)
+
+Create private cases with multiple narratives. Support creating, editing, saving, and deleting narratives, draft autosave, and a simple rich text toolbar with bold, italic, underline, and selected text at 1.3× normal size. Insert images and attach audio/video with inline playback for supported formats. Use Active Storage with private media access and responsive layouts.
+
+Start with Action Text/Trix, verifying the required formatting and media behavior before building the full editor. Action Text and Active Storage are Rails components; `image_processing` and `ruby-vips` are already in the Gemfile. Add `aws-sdk-s3` only when configuring S3-compatible storage.
+
+### Milestone 2 — Vertical Timeline & Narrative Integration
+
+Build a vertical timeline with event titles, descriptions, and dates/times when known. Link events to narratives, allowing several events to reference the same narrative. Support adding, editing, deleting, and reordering events, including approximate and unknown dates without inventing precision. Keep dated events chronological and use manual ordering for ties and uncertain or undated events.
+
+Use Rails, Turbo, Stimulus, and SCSS. No additional timeline or ordering dependency is needed initially.
+
+**Launch a usable beta after milestone 2.** Prioritize reliable writing, saving, media uploads, and event reconstruction. Build milestones 3 and 4 based on feedback.
+
+### Milestone 3 — Narrative & Timeline Enhancements
+
+Add links to specific narrative sections, event-level media associations, source references, narrative search, tags or categories, printable narratives and timelines, and basic version history. Preserve rich text and attachment references when recording revisions.
+
+Introduce `pg_search` for search and `paper_trail` for revision tracking when implementing those features. Start with print styles and browser save-to-PDF; add a PDF renderer only if automatic PDF downloads become necessary.
+
+### Milestone 4 — AI Narrative Assistance
+
+Add grammar and readability suggestions, summaries, proposed timeline events, and prompts about potentially conflicting statements or missing information. Let users select material for analysis and approve changes before they are saved. Preserve original statements and uncertainty, provide source references for suggested events, and prevent AI from inventing facts or deciding which disputed account is true.
+
+Reuse existing background jobs with `solid_queue`. Consider `ruby_llm` only if an AI client is needed after reviewing any existing document-analyzer integration. Semantic search is outside the initial scope.
+
+The [Case Narrative product plan](docs/product-plan.md) is the detailed source for milestone scope, completion criteria, architectural decisions, and dependency choices. Firm workspaces and professional collaboration workflows follow the completed individual experience.
 
 ![Preview](preview.png)
 
@@ -58,28 +101,6 @@ CREATE DATABASE case_narrative_production_cache OWNER case_narrative;
 CREATE DATABASE case_narrative_production_queue OWNER case_narrative;
 CREATE DATABASE case_narrative_production_cable OWNER case_narrative;
 ```
-
-# TODO
-
-- Build core models (Case, Event, Exhibit)
-- Implement timeline UI with dynamic data
-- Add authentication (Devise)
-- Add file uploads (Active Storage)
-- Add rich text editor for narratives
-- Add event linking and references
-- Add export to PDF functionality
-- Add gems:
-  - gem "devise" # Authentication (users, attorneys, defendants)
-  - gem "devise_invitable" # Invite users (attorney invites defendant)
-  - gem "pundit" # Authorization (roles, permissions, access control)
-  - gem "pg_search" # Full-text search using PostgreSQL
-  - gem "validates_timeliness" # Validate dates and date ranges
-  - gem "paper_trail" # Track changes (who edited what and when)
-  - gem "bullet" # Detect N+1 queries
-  - gem "rack-mini-profiler" # Performance profiling
-  - gem "rspec-rails" # Testing framework
-  - gem "factory_bot_rails" # Test data factories
-  - gem "simplecov", require: false # Test coverage
 
 # Dev: How To
 
